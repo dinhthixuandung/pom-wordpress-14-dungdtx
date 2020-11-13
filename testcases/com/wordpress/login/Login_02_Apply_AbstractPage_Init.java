@@ -134,7 +134,7 @@ public class Login_02_Apply_AbstractPage_Init {
 	  return rand.nextInt(99999);
   }
  
-
+///////////////////////////////////////
   
   @AfterClass
   public void afterClass() {
