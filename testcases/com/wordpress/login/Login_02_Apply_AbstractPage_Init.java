@@ -89,7 +89,7 @@ public class Login_02_Apply_AbstractPage_Init {
 	  abstractPage.clickToElement(driver, loginButton);
 	  
 //	  driver.findElement(emailPasswordBy).sendKeys("");
-	  abstractPage.senKeysToElement(driver, emailTextbox, "");
+	  abstractPage.senKeysToElement(driver, emailPassword, "");
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  	  
@@ -100,11 +100,12 @@ public class Login_02_Apply_AbstractPage_Init {
   public void Validate_05_PasswordLessThan6Chars() {
 //	  driver.findElement(emailTextboxBy).sendKeys("automationeditor");
 	  abstractPage.senKeysToElement(driver, emailTextbox, "automationeditor");
+	  
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  
 //	  driver.findElement(emailPasswordBy).sendKeys("123");
-	  abstractPage.senKeysToElement(driver, emailTextbox, "123");
+	  abstractPage.senKeysToElement(driver, emailPassword, "123");
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  
@@ -117,16 +118,20 @@ public class Login_02_Apply_AbstractPage_Init {
 	  //pass: automationfc
 //	  driver.findElement(emailTextboxBy).sendKeys("automationeditor");
 	  abstractPage.senKeysToElement(driver, emailTextbox, "automationeditor");
+	  
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 //	  
 //	  driver.findElement(emailPasswordBy).sendKeys("automationfc");
-	  abstractPage.senKeysToElement(driver, emailTextbox, "automationfc");
+	  abstractPage.senKeysToElement(driver, emailPassword, "automationfc");
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  
-	  Assert.assertTrue(driver.findElement(By.xpath("//h1[text()='Dashboard']")).isDisplayed());
-	  Assert.assertTrue(driver.findElement(By.xpath("//div[@id='dashboard-widgets']")).isDisplayed());
+//	  Assert.assertTrue(driver.findElement(By.xpath("//h1[text()='Dashboard']")).isDisplayed());
+	  Assert.assertTrue(abstractPage.isElementDisplayed(driver, "//h1[text()='Dashboard']"));
+	  
+//	  Assert.assertTrue(driver.findElement(By.xpath("//div[@id='dashboard-widgets']")).isDisplayed());
+	  Assert.assertTrue(abstractPage.isElementDisplayed(driver, "//div[@id='dashboard-widgets']"));
   }
 
   public int randomNumber() {
