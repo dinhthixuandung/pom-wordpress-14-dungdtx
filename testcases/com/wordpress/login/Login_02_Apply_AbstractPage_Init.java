@@ -48,7 +48,7 @@ public class Login_02_Apply_AbstractPage_Init {
   @Test
   public void Validate_01_EmptyEmail() {
 //	  driver.findElement(emailTextboxBy).sendKeys("");
-	  abstractPage.senKeysToElement(driver, emailTextbox, "");
+	  abstractPage.sendKeysToElement(driver, emailTextbox, "");
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  
@@ -61,7 +61,7 @@ public class Login_02_Apply_AbstractPage_Init {
   public void Validate_02_InvalidEmail() {
 	  //123@123.123
 	  //driver.findElement(emailTextboxBy).sendKeys("123@123.123");
-	  abstractPage.senKeysToElement(driver, emailTextbox, "123@123.123");
+	  abstractPage.sendKeysToElement(driver, emailTextbox, "123@123.123");
 	  //driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  	  
@@ -73,7 +73,7 @@ public class Login_02_Apply_AbstractPage_Init {
 	  //automationdung@gmail.com
 	  	  
 	 // driver.findElement(emailTextboxBy).sendKeys("automation" + randomNumber() + "@gmail.com");
-	  abstractPage.senKeysToElement(driver, emailTextbox,"automation" + randomNumber() + "@gmail.com");
+	  abstractPage.sendKeysToElement(driver, emailTextbox,"automation" + randomNumber() + "@gmail.com");
 	  //driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  	  
@@ -84,12 +84,12 @@ public class Login_02_Apply_AbstractPage_Init {
   @Test
   public void Validate_04_EmptyPassword() {
 //	  driver.findElement(emailTextboxBy).sendKeys("automationeditor");
-	  abstractPage.senKeysToElement(driver, emailTextbox, "automationeditor");
+	  abstractPage.sendKeysToElement(driver, emailTextbox, "automationeditor");
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  
 //	  driver.findElement(emailPasswordBy).sendKeys("");
-	  abstractPage.senKeysToElement(driver, emailPassword, "");
+	  abstractPage.sendKeysToElement(driver, emailPassword, "");
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  	  
@@ -99,13 +99,13 @@ public class Login_02_Apply_AbstractPage_Init {
   @Test
   public void Validate_05_PasswordLessThan6Chars() {
 //	  driver.findElement(emailTextboxBy).sendKeys("automationeditor");
-	  abstractPage.senKeysToElement(driver, emailTextbox, "automationeditor");
+	  abstractPage.sendKeysToElement(driver, emailTextbox, "automationeditor");
 	  
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  
 //	  driver.findElement(emailPasswordBy).sendKeys("123");
-	  abstractPage.senKeysToElement(driver, emailPassword, "123");
+	  abstractPage.sendKeysToElement(driver, emailPassword, "123");
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  
@@ -117,13 +117,13 @@ public class Login_02_Apply_AbstractPage_Init {
   public void Validate_06_ValidPassword() {
 	  //pass: automationfc
 //	  driver.findElement(emailTextboxBy).sendKeys("automationeditor");
-	  abstractPage.senKeysToElement(driver, emailTextbox, "automationeditor");
+	  abstractPage.sendKeysToElement(driver, emailTextbox, "automationeditor");
 	  
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 //	  
 //	  driver.findElement(emailPasswordBy).sendKeys("automationfc");
-	  abstractPage.senKeysToElement(driver, emailPassword, "automationfc");
+	  abstractPage.sendKeysToElement(driver, emailPassword, "automationfc");
 //	  driver.findElement(loginButtonBy).click();
 	  abstractPage.clickToElement(driver, loginButton);
 	  

@@ -40,7 +40,7 @@ public class Login_03_Apply_AbstractPage_Extend extends AbstractPage{
   
   @Test
   public void Validate_01_EmptyEmail() {
-	  senKeysToElement(driver, emailTextbox, "");
+	  sendKeysToElement(driver, emailTextbox, "");
 	  clickToElement(driver, loginButton);
 	  
 	  Assert.assertEquals(getElementText(driver, emailErrorMess), "Please enter a username or email address.");
@@ -49,7 +49,7 @@ public class Login_03_Apply_AbstractPage_Extend extends AbstractPage{
   @Test
   public void Validate_02_InvalidEmail() {
 	  //123@123.123
-	  senKeysToElement(driver, emailTextbox, "123@123.123");
+	  sendKeysToElement(driver, emailTextbox, "123@123.123");
 	  clickToElement(driver, loginButton);
 	  	  
 	  Assert.assertEquals(getElementText(driver, emailErrorMess), "Please log in using your WordPress.com username instead of your email address.");
@@ -58,7 +58,7 @@ public class Login_03_Apply_AbstractPage_Extend extends AbstractPage{
   @Test
   public void Validate_03_EmailNotExist() {
 	  //automationdung@gmail.com
-	  senKeysToElement(driver, emailTextbox,"automation" + randomNumber() + "@gmail.com");
+	  sendKeysToElement(driver, emailTextbox,"automation" + randomNumber() + "@gmail.com");
 	  clickToElement(driver, loginButton);
 	  	  
 	  Assert.assertEquals(getElementText(driver, emailErrorMess), "User does not exist. Would you like to create a new account?");  
@@ -66,9 +66,9 @@ public class Login_03_Apply_AbstractPage_Extend extends AbstractPage{
   
   @Test
   public void Validate_04_EmptyPassword() {
-	  senKeysToElement(driver, emailTextbox, "automationeditor");
+	  sendKeysToElement(driver, emailTextbox, "automationeditor");
 	  clickToElement(driver, loginButton);
-	  senKeysToElement(driver, emailPassword, "");
+	  sendKeysToElement(driver, emailPassword, "");
 	  clickToElement(driver, loginButton);
 	  	  
 	  Assert.assertEquals(getElementText(driver, emailErrorMess), "Don't forget to enter your password.");
@@ -76,9 +76,9 @@ public class Login_03_Apply_AbstractPage_Extend extends AbstractPage{
   
   @Test
   public void Validate_05_PasswordLessThan6Chars() {
-	  senKeysToElement(driver, emailTextbox, "automationeditor");
+	  sendKeysToElement(driver, emailTextbox, "automationeditor");
 	  clickToElement(driver, loginButton);	  
-	  senKeysToElement(driver, emailPassword, "123");
+	  sendKeysToElement(driver, emailPassword, "123");
 	  clickToElement(driver, loginButton);
 	  
 	  Assert.assertEquals(getElementText(driver, emailErrorMess), "Oops, that's not the right password. Please try again!");
@@ -88,9 +88,9 @@ public class Login_03_Apply_AbstractPage_Extend extends AbstractPage{
   @Test
   public void Validate_06_ValidPassword() {
 	  //pass: automationfc
-	  senKeysToElement(driver, emailTextbox, "automationeditor");
+	  sendKeysToElement(driver, emailTextbox, "automationeditor");
 	  clickToElement(driver, loginButton);
-	  senKeysToElement(driver, emailPassword, "automationfc");
+	  sendKeysToElement(driver, emailPassword, "automationfc");
 	  clickToElement(driver, loginButton);
 
 	  Assert.assertTrue(isElementDisplayed(driver, "//h1[text()='Dashboard']"));
