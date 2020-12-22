@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Smart Petro" parallel="false">
+  <test name="Run on FireFox">
+    <classes>
+      <class name="com.smartpetro.login.Login_01_LoginManagement"/>
+    </classes>
+  </test> 
+</suite> 
