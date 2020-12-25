@@ -2,7 +2,8 @@
 <suite name="Smart Petro" parallel="false">
   <test name="Run on FireFox">
     <classes>
-      <class name="com.smartpetro.login.Login_01_LoginManagement"/>
+      <class name="com.smartpetro.documenttype.DocumentType_01_Add"/>
     </classes>
   </test> 
 </suite> 
+ 

@@ -34,7 +34,7 @@ public class Login_01_LoginManagement {
 	@Test
 	public void TC_01_Login() {
 		loginPage.inputToUserIDTextbox("sysadmin");
-		loginPage.inputToPasswordTextbox("123456");
+		loginPage.inputToPasswordTextbox("sm@c.123");
 		loginPage.clickToLoginButton();
 		
 		dashboardPage = new DashboardPageObject(driver);

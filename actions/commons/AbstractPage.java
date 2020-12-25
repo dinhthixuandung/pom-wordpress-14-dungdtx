@@ -121,8 +121,18 @@ public class AbstractPage {
 		findElementByXPath(driver, locator).click();
 	}
 	
+	public void clickToElement(WebDriver driver, String locator, String... values) {
+		findElementByXPath(driver, castToObject(locator, values)).click();
+	}
+	
 	public void sendKeysToElement(WebDriver driver, String locator, String value) {
 		element = findElementByXPath(driver, locator);
+		element.clear();
+		element.sendKeys(value);
+	}
+	
+	public void sendKeysToElement(WebDriver driver, String locator, String value, String... values) {
+		element = findElementByXPath(driver, castToObject(locator, values));
 		element.clear();
 		element.sendKeys(value);
 	}
@@ -153,22 +163,23 @@ public class AbstractPage {
 		}
 	}
 	
-	public void selectItemInCustomDropdown(WebDriver driver, String parenXPath, String allItemXPath, String expectedValueItem) {
+	public void selectItemInCustomDropdown(WebDriver driver, String parenXPath, String allItemXPath,
+			String expectedValueItem) {
 		element = findElementByXPath(driver, parenXPath);
 		jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].click();", element);
 		sleepInSeconds(1);
-		
+
 		explicitWait = new WebDriverWait(driver, longTime);
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXPath(allItemXPath)));
-		
+
 		elements = findElementsByXPath(driver, allItemXPath);
-		
-		for(WebElement childElement:elements) {
-			if(childElement.getText().equals(expectedValueItem)) {
-				if(childElement.isDisplayed()) {
+
+		for (WebElement childElement : elements) {
+			if (childElement.getText().equals(expectedValueItem)) {
+				if (childElement.isDisplayed()) {
 					childElement.click();
-				}else {
+				} else {
 					jsExecutor.executeScript("arguments[0].scrollIntoView(true);", childElement);
 					sleepInSeconds(1);
 					jsExecutor.executeScript("arguments[0].click();", childElement);
@@ -177,12 +188,9 @@ public class AbstractPage {
 				break;
 			}
 		}
-		
-		
-		
-		
+
 	}
-	
+
 	public int countElementNumber(WebDriver driver, String locator) {
 		elements = findElementsByXPath(driver, locator);
 		return elements.size();
@@ -241,6 +249,11 @@ public class AbstractPage {
 	public void sendKeyBoardToElement(WebDriver driver, String locator, Keys key) {
 		action = new Actions(driver);
 		action.sendKeys(findElementByXPath(driver, locator), key).perform();
+	}
+	
+	public void sendKeyBoardToElement(WebDriver driver, String locator, Keys key, String... values) {
+		action = new Actions(driver);
+		action.sendKeys(findElementByXPath(driver, castToObject(locator, values)), key).perform();
 	}
 	
 	public Object executeForBrowser(WebDriver driver, String javaScript) {
@@ -304,6 +317,11 @@ public class AbstractPage {
 	public void waitForElementVisible(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, longTime);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXPath(locator)));
+	}
+	
+	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
+		explicitWait = new WebDriverWait(driver, longTime);
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXPath(castToObject(locator, values))));
 	}
 	
 	public void waitForElementInvisible(WebDriver driver, String locator) {
