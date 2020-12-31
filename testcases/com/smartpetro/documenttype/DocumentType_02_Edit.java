@@ -3,6 +3,8 @@ package com.smartpetro.documenttype;
 import org.testng.annotations.Test;
 import org.w3c.dom.DocumentType;
 
+import com.thoughtworks.selenium.webdriven.commands.Refresh;
+
 import pageObjects.smartPetro.DashboardPageObject;
 import pageObjects.smartPetro.DataTablePageObject;
 import pageObjects.smartPetro.DocumentTypePageObject;
@@ -26,7 +28,7 @@ public class DocumentType_02_Edit {
 	String userID = "sysadmin";
 	String password = "sm@c.123";
 	String name = "Auto test" + randomNumber();
-	String editName;
+	String indenticalName;
 	DataTablePageObject dataTablePage;
 
 	@BeforeClass
@@ -50,9 +52,9 @@ public class DocumentType_02_Edit {
 		System.out.println("TC_01_Login: Sucessfull");
 	}
 
-		
 	@Test
-	public void TC_02_AddValidData() {
+	public void TC_02_EditNotChooseRow() {
+
 		dashboardPage.clickToMenu();
 
 		dashboardPage.clickToSubMenu();
@@ -61,39 +63,104 @@ public class DocumentType_02_Edit {
 
 		documentTypePage = new DocumentTypePageObject(driver);
 
+		documentTypePage.clickToEditButton();
+
+		Assert.assertEquals(documentTypePage.getAlertMassege(), "Chọn dòng dữ liệu cần chỉnh sửa.");
+
+		documentTypePage.clickToOkButton();
+
+		System.out.println("TC_02_EditNotChooseRow: Sucessfull");
+
+	}
+
+	@Test
+	public void TC_03_AddValidData() {
+
+		documentTypePage = new DocumentTypePageObject(driver);
+
 		documentTypePage.clickToAddButton();
-		
-		editName = name;
+
 		documentTypePage.inputNameTextbox(name);
 		documentTypePage.inputOtherNameTextbox(name);
 		documentTypePage.inputDescriptionArea(name);
-		
+
 		documentTypePage.clickToSaveButton();
+		documentTypePage.clickToAcceptButton();
+		documentTypePage.clickToOkButton();
+		documentTypePage.clickToRefreshButton();
 
+		System.out.println("TC_03_AddValidData: Sucessfull");
 	}
-	
+
 	@Test
-	public void TC_03_EditWithValidData() {
-		dataTablePage = new DataTablePageObject(driver);
-		
-		dataTablePage.inputToColumnByName("Tên loại chứng từ", editName);
-		
-		//dataTablePage.refresh(driver);
+	public void TC_04_EditNotInputRequireField() {
 
-		//Assert.assertTrue(dataTablePage.isOnlyOneRowDisplayed(editName));
-		
-		System.out.println("TC_04_AddIndenticalData: Sucessfull");
+		dataTablePage = new DataTablePageObject(driver);
+
+		dataTablePage.inputToColumnByName("Tên loại chứng từ", name);
+
+		dataTablePage.clickToDynamicRowByName(name);
+
+		documentTypePage.clickToEditButton();
+
+		documentTypePage.clickToNameTextbox();
+		documentTypePage.clearData();
+		documentTypePage.clickToOtherTextbox();
+
+		Assert.assertEquals(documentTypePage.getErrorMassege(), "Không được để trống");
+
+		documentTypePage.clickToCloseButton();
+
+		System.out.println("TC_04_EditNotInputRequireField: Sucessfull");
 	}
 
-	
-	
+	@Test
+	public void TC_05_Edit_IndenticalData() {
+
+		dataTablePage = new DataTablePageObject(driver);
+
+		dataTablePage.inputToColumnByName("Tên loại chứng từ", name);
+
+		dataTablePage.clickToDynamicRowByName(name);
+
+		documentTypePage.clickToEditButton();
+
+		documentTypePage.inputNameTextbox("Hoá đơn giá trị gia tăng");
+
+		Assert.assertEquals(documentTypePage.getErrorMassege(), "Tên loại chứng từ đã tồn tại");
+
+		documentTypePage.clickToCloseButton();
+
+		System.out.println("TC_05_Edit_IndenticalData: Sucessfull");
+	}
+
+	@Test
+	public void TC_06_EditWithValidData() {
+		dataTablePage = new DataTablePageObject(driver);
+
+		dataTablePage.inputToColumnByName("Tên loại chứng từ", name);
+
+		dataTablePage.clickToDynamicRowByName(name);
+
+		documentTypePage.clickToEditButton();
+
+		documentTypePage.inputNameTextbox("edited" + randomNumber());
+		documentTypePage.inputOtherNameTextbox("edited" + randomNumber());
+		documentTypePage.inputDescriptionArea("edited" + randomNumber());
+
+		documentTypePage.clickToSaveButton();
+		documentTypePage.clickToAcceptButton();
+		documentTypePage.clickToOkButton();
+
+		System.out.println("TC_06_EditWithValidData: Sucessfull");
+	}
+
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
 	}
 
-	public int randomNumber()
-	{
+	public int randomNumber() {
 		Random number = new Random();
 		return number.nextInt(9999);
 	}

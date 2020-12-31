@@ -20,12 +20,16 @@ public class DataTablePageObject extends AbstractPage{
 		
 	}
 
-	public boolean isOnlyOneRowDisplayed(String editName) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isOnlyOneRowDisplayed(String textValue) {
+		waitForElementVisible(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, textValue);
+		return (countElementNumber(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, textValue) == 1
+				&& isElementDisplayed(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, textValue));
 	}
 
+	public void clickToDynamicRowByName(String editName) {
+		waitForElementClickable(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, editName);
+		clickToElement(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, editName);
+		sleepInSeconds(1);
+	}
 
-	
-	
 }

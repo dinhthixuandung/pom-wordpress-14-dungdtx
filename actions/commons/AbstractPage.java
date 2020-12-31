@@ -109,6 +109,10 @@ public class AbstractPage {
 		return By.xpath(locator);
 	}
 	
+	public By byXPath(String locator, String... values) {
+		return By.xpath(locator);
+	}
+	
 	public WebElement findElementByXPath(WebDriver driver, String locator) {
 		return driver.findElement(byXPath(locator));
 	}
@@ -116,6 +120,27 @@ public class AbstractPage {
 	public List<WebElement> findElementsByXPath(WebDriver driver, String locator) {
 		return driver.findElements(byXPath(locator));
 	}
+	
+	public List<WebElement> findElementsByXPath(WebDriver driver, String locator, String... values) {
+		return driver.findElements(byXPath(locator, castToObject(locator, values)));
+	}
+	
+	public String castToObject(String locator, String... values)
+	{
+		locator = String.format(locator, (Object[]) values);
+		System.out.println(locator);
+		return locator;
+	}
+	
+	
+	public void clearElement(WebDriver driver, String locator) {
+		element = findElementByXPath(driver, locator);
+		element.clear();
+		
+		element.sendKeys(" ");
+		element.sendKeys(Keys.BACK_SPACE);
+	}
+	
 	
 	public void clickToElement(WebDriver driver, String locator) {
 		findElementByXPath(driver, locator).click();
@@ -196,6 +221,11 @@ public class AbstractPage {
 		return elements.size();
 	}
 	
+	public int countElementNumber(WebDriver driver, String locator, String... values) {
+		elements = findElementsByXPath(driver, locator, castToObject(locator, values));
+		return elements.size();
+	}
+	
 	public void checkToCheckbox(WebDriver driver, String locator) {
 		element = findElementByXPath(driver, locator);
 		if(!element.isSelected()) {
@@ -212,6 +242,10 @@ public class AbstractPage {
 	
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		return findElementByXPath(driver, locator).isDisplayed();
+	}
+	
+	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
+		return findElementByXPath(driver, castToObject(locator, values)).isDisplayed();
 	}
 	
 	public boolean isElementSelected(WebDriver driver, String locator) {
@@ -236,6 +270,8 @@ public class AbstractPage {
 		action.moveToElement(findElementByXPath(driver, locator)).perform();
 	}
 	
+	
+		
 	public void rightClickToElement(WebDriver driver, String locator) {
 		action = new Actions(driver);
 		action.contextClick(findElementByXPath(driver, locator)).perform();
@@ -332,6 +368,11 @@ public class AbstractPage {
 	public void waitForElementClickable(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, longTime);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXPath(locator)));
+	}
+	
+	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
+		explicitWait = new WebDriverWait(driver, longTime);
+		explicitWait.until(ExpectedConditions.elementToBeClickable(byXPath(castToObject(locator, values))));
 	}
 	
 }
