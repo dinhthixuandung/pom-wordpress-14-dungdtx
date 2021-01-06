@@ -28,8 +28,8 @@ public class DocumentTypePageObject extends AbstractPage{
 
 
 	public void inputNameTextbox(String name) {
-		waitForElementVisible(driver, DocumentTypePageUI.DOCUMENTNAME_TEXTBOX);
-		sendKeysToElement(driver, DocumentTypePageUI.DOCUMENTNAME_TEXTBOX, name);
+		waitForElementVisible(driver, DocumentTypePageUI.NAME_TEXTBOX);
+		sendKeysToElement(driver, DocumentTypePageUI.NAME_TEXTBOX, name);
 		
 	}
 	
@@ -88,8 +88,8 @@ public class DocumentTypePageObject extends AbstractPage{
 	}
 
 	public void clickToNameTextbox() {
-		waitForElementClickable(driver, DocumentTypePageUI.DOCUMENTNAME_TEXTBOX);	
-		clickToElement(driver, DocumentTypePageUI.DOCUMENTNAME_TEXTBOX);
+		waitForElementClickable(driver, DocumentTypePageUI.NAME_TEXTBOX);	
+		clickToElement(driver, DocumentTypePageUI.NAME_TEXTBOX);
 		sleepInSeconds(1);
 		
 	}
@@ -102,8 +102,8 @@ public class DocumentTypePageObject extends AbstractPage{
 
 	public void clearData() {
 
-		waitForElementVisible(driver, DocumentTypePageUI.DOCUMENTNAME_TEXTBOX);
-		clearElement(driver, DocumentTypePageUI.DOCUMENTNAME_TEXTBOX);
+		waitForElementVisible(driver, DocumentTypePageUI.NAME_TEXTBOX);
+		clearElement(driver, DocumentTypePageUI.NAME_TEXTBOX);
 		sleepInSeconds(1);
 	}
 

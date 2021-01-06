@@ -1,4 +1,4 @@
-package com.smartpetro.login;
+package com.login;
 
 import org.testng.annotations.Test;
 

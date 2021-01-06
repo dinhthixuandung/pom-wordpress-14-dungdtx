@@ -1,9 +1,12 @@
-package com.smartpetro.documenttype;
+package com.documenttype;
 
 import org.testng.annotations.Test;
 import org.w3c.dom.DocumentType;
 
+import com.thoughtworks.selenium.webdriven.commands.Refresh;
+
 import pageObjects.smartPetro.DashboardPageObject;
+import pageObjects.smartPetro.DataTablePageObject;
 import pageObjects.smartPetro.DocumentTypePageObject;
 import pageObjects.smartPetro.LoginPageObject;
 
@@ -17,15 +20,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class DocumentType_01_Add {
+public class DocumentType_03_Delete {
 	WebDriver driver;
 	LoginPageObject loginPage;
 	DashboardPageObject dashboardPage;
 	DocumentTypePageObject documentTypePage;
 	String userID = "sysadmin";
 	String password = "sm@c.123";
+	String expectedRole = "Quản trị cấp công ty";
+	String expectedCompany = "Công Ty Smac Petro - Sài Gòn";
 	String name = "Auto test" + randomNumber();
 	String indenticalName;
+	DataTablePageObject dataTablePage;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -42,42 +48,45 @@ public class DocumentType_01_Add {
 		loginPage.inputToUserIDTextbox(userID);
 		loginPage.inputToPasswordTextbox(password);
 		loginPage.clickToLoginButton();
-
+		
+		loginPage.selectRole(expectedRole);		
+		
+		loginPage.selectCompany(expectedCompany);
+		loginPage.clickToAcceptButton();
+		
 		dashboardPage = new DashboardPageObject(driver);
 		Assert.assertTrue(dashboardPage.isDisplayedHeader());
 		System.out.println("TC_01_Login: Sucessfull");
 	}
 
 	@Test
-	public void TC_02_AddEmptyData() {
+	public void TC_02_DeleteNotChooseRow() {
+
 		dashboardPage.clickToMenu();
 
 		dashboardPage.clickToSubMenu();
 
 		dashboardPage.clickToChildMenu();
+		
+		documentTypePage = new DocumentTypePageObject(driver);
+		
+		documentTypePage.clickToDeleteButton();
+
+		Assert.assertEquals(documentTypePage.getAlertMassege(), "Ch�?n dòng dữ liệu cần xóa.");
+
+		documentTypePage.clickToOkButton();
+
+		System.out.println("TC_02_DeleteNotChooseRow: Sucessfull");
+		
+	}
+		
+	@Test
+	public void TC_03_AddValidData() {
 
 		documentTypePage = new DocumentTypePageObject(driver);
 
 		documentTypePage.clickToAddButton();
-		
-		documentTypePage.inputNameTextbox("");
-		
-		documentTypePage.clickToOtherTextbox();
-		
-		Assert.assertEquals(documentTypePage.getErrorMassege(),"Không được để trống");
-		
-		documentTypePage.clickToCloseButton();
-		
-		System.out.println("TC_02_AddEmptyData: Sucessfull");
-		
-	}
-	
-	@Test
-	public void TC_03_AddValidData() {
-		
-		documentTypePage.clickToAddButton();
-		
-		indenticalName = name;
+				
 		documentTypePage.inputNameTextbox(name);
 		documentTypePage.inputOtherNameTextbox(name);
 		documentTypePage.inputDescriptionArea(name);
@@ -85,25 +94,29 @@ public class DocumentType_01_Add {
 		documentTypePage.clickToSaveButton();
 		documentTypePage.clickToAcceptButton();
 		documentTypePage.clickToOkButton();
-
+		documentTypePage.clickToRefreshButton();
+		
 		System.out.println("TC_03_AddValidData: Sucessfull");
 	}
 	
 	@Test
-	public void TC_04_AddIndenticalData() {
-
-		documentTypePage.clickToAddButton();
+	public void TC_04_DeleteData() {
 		
-		documentTypePage.inputNameTextbox(indenticalName);
+		dataTablePage = new DataTablePageObject(driver);
 		
-		Assert.assertEquals(documentTypePage.getErrorMassege(),"Tên loại chứng từ đã tồn tại");
+		dataTablePage.inputToColumnByName("Tên loại chứng từ", name);
 		
-		documentTypePage.clickToCloseButton();
+		dataTablePage.clickToDynamicRowByName(name);
 		
-		System.out.println("TC_04_AddIndenticalData: Sucessfull");
+		documentTypePage.clickToDeleteButton();
+		
+		documentTypePage.clickToAcceptButton();
+		
+		documentTypePage.clickToOkButton();
+		
+		System.out.println("TC_04_DeleteData: Sucessfull");
 	}
 
-	
 	
 	@AfterClass
 	public void afterClass() {
