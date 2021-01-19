@@ -27,8 +27,8 @@ public class OtherGoods_02_Edit {
 	DocumentTypePageObject documentTypePage;
 	String userID = "sysadmin";
 	String password = "sm@c.123";
-	String expectedRole = "Quản trị cấp công ty";
-	String expectedCompany = "Công Ty Smac Petro - Sài Gòn";
+	String expectedRole = "Quáº£n trá»‹ cáº¥p cÃ´ng ty";
+	String expectedCompany = "CÃ´ng Ty Smac Petro - SÃ i GÃ²n";
 	String name = "Auto test" + randomNumber();
 	String indenticalName;
 	DataTablePageObject dataTablePage;
@@ -62,17 +62,17 @@ public class OtherGoods_02_Edit {
 	@Test
 	public void TC_02_EditNotChooseRow() {
 
-		dashboardPage.clickToMenu();
+		dashboardPage.clickToMenu("HỆ THỐNG");
 
-		dashboardPage.clickToSubMenu();
+		dashboardPage.clickToSubMenu("D.MỤC HÀNG HÓA");
 
-		dashboardPage.clickToChildMenu();
+		dashboardPage.clickToChildMenu("Hàng hóa khác");
 
 		documentTypePage = new DocumentTypePageObject(driver);
 
 		documentTypePage.clickToEditButton();
 
-		Assert.assertEquals(documentTypePage.getAlertMassege(), "Ch�?n dòng dữ liệu cần chỉnh sửa.");
+		Assert.assertEquals(documentTypePage.getAlertMassege(), "Chá»?n dÃ²ng dá»¯ liá»‡u cáº§n chá»‰nh sá»­a.");
 
 		documentTypePage.clickToOkButton();
 
@@ -104,7 +104,7 @@ public class OtherGoods_02_Edit {
 
 		dataTablePage = new DataTablePageObject(driver);
 
-		dataTablePage.inputToColumnByName("Tên loại chứng từ", name);
+		dataTablePage.inputToColumnByName("TÃªn loáº¡i chá»©ng tá»«", name);
 
 		dataTablePage.clickToDynamicRowByName(name);
 
@@ -114,7 +114,7 @@ public class OtherGoods_02_Edit {
 		documentTypePage.clearData();
 		documentTypePage.clickToOtherTextbox();
 
-		Assert.assertEquals(documentTypePage.getErrorMassege(), "Không được để trống");
+		Assert.assertEquals(documentTypePage.getErrorMassege(), "KhÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng");
 
 		documentTypePage.clickToCloseButton();
 
@@ -126,15 +126,15 @@ public class OtherGoods_02_Edit {
 
 		dataTablePage = new DataTablePageObject(driver);
 
-		dataTablePage.inputToColumnByName("Tên loại chứng từ", name);
+		dataTablePage.inputToColumnByName("TÃªn loáº¡i chá»©ng tá»«", name);
 
 		dataTablePage.clickToDynamicRowByName(name);
 
 		documentTypePage.clickToEditButton();
 
-		documentTypePage.inputNameTextbox("Hoá đơn giá trị gia tăng");
+		documentTypePage.inputNameTextbox("HoÃ¡ Ä‘Æ¡n giÃ¡ trá»‹ gia tÄƒng");
 
-		Assert.assertEquals(documentTypePage.getErrorMassege(), "Tên loại chứng từ đã tồn tại");
+		Assert.assertEquals(documentTypePage.getErrorMassege(), "TÃªn loáº¡i chá»©ng tá»« Ä‘Ã£ tá»“n táº¡i");
 
 		documentTypePage.clickToCloseButton();
 
@@ -145,7 +145,7 @@ public class OtherGoods_02_Edit {
 	public void TC_06_EditWithValidData() {
 		dataTablePage = new DataTablePageObject(driver);
 
-		dataTablePage.inputToColumnByName("Tên loại chứng từ", name);
+		dataTablePage.inputToColumnByName("TÃªn loáº¡i chá»©ng tá»«", name);
 
 		dataTablePage.clickToDynamicRowByName(name);
 

@@ -62,17 +62,17 @@ public class DocumentType_02_Edit {
 	@Test
 	public void TC_02_EditNotChooseRow() {
 
-		dashboardPage.clickToMenu();
-
-		dashboardPage.clickToSubMenu();
-
-		dashboardPage.clickToChildMenu();
+//		dashboardPage.clickToMenu();
+//
+//		dashboardPage.clickToSubMenu();
+//
+//		dashboardPage.clickToChildMenu();
 
 		documentTypePage = new DocumentTypePageObject(driver);
 
 		documentTypePage.clickToEditButton();
 
-		Assert.assertEquals(documentTypePage.getAlertMassege(), "Ch�?n dòng dữ liệu cần chỉnh sửa.");
+		Assert.assertEquals(documentTypePage.getAlertMassege(), "Ch�?n dòng dữ liệu cần chỉnh sửa.");
 
 		documentTypePage.clickToOkButton();
 

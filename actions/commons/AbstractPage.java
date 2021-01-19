@@ -109,9 +109,9 @@ public class AbstractPage {
 		return By.xpath(locator);
 	}
 	
-	public By byXPath(String locator, String... values) {
-		return By.xpath(locator);
-	}
+//	public By byXPath(String locator, String... values) {
+//		return By.xpath(locator);
+//	}
 	
 	public WebElement findElementByXPath(WebDriver driver, String locator) {
 		return driver.findElement(byXPath(locator));
@@ -122,7 +122,7 @@ public class AbstractPage {
 	}
 	
 	public List<WebElement> findElementsByXPath(WebDriver driver, String locator, String... values) {
-		return driver.findElements(byXPath(locator, castToObject(locator, values)));
+		return driver.findElements(byXPath(castToObject(locator, values)));
 	}
 	
 	public String castToObject(String locator, String... values)
@@ -215,6 +215,58 @@ public class AbstractPage {
 		}
 
 	}
+	
+	public void selectItemsInMultiDropdown(WebDriver driver, String parenXPath, String allItemXPath,
+			String[] distributions) {
+		element = findElementByXPath(driver, parenXPath);
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].click();", element);
+		sleepInSeconds(1);
+
+		explicitWait = new WebDriverWait(driver, longTime);
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXPath(allItemXPath)));
+
+		elements = findElementsByXPath(driver, allItemXPath);
+		for (String dis : distributions) {
+			for (WebElement childElement : elements) {
+				String a = childElement.getText();
+				if (a.equals(dis)) {
+					childElement.click();
+					break;
+				}
+
+			}
+		}
+	}
+	
+	
+//	public void searchItemInCustomDropdown(WebDriver driver, String parenXPath, String expectedValueItem) {
+//		element = findElementByXPath(driver, parenXPath);
+//		jsExecutor = (JavascriptExecutor) driver;
+//		jsExecutor.executeScript("arguments[0].click();", element);
+//		sleepInSeconds(1);
+//
+//		explicitWait = new WebDriverWait(driver, longTime);
+//		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXPath(allItemXPath)));
+//
+//		elements = findElementsByXPath(driver, allItemXPath);
+//
+//		for (WebElement childElement : elements) {
+//			if (childElement.getText().equals(expectedValueItem)) {
+//				if (childElement.isDisplayed()) {
+//					childElement.click();
+//				} else {
+//					jsExecutor.executeScript("arguments[0].scrollIntoView(true);", childElement);
+//					sleepInSeconds(1);
+//					jsExecutor.executeScript("arguments[0].click();", childElement);
+//				}
+//				sleepInSeconds(1);
+//				break;
+//			}
+//		}
+//
+//	}
+
 
 	public int countElementNumber(WebDriver driver, String locator) {
 		elements = findElementsByXPath(driver, locator);
@@ -222,7 +274,7 @@ public class AbstractPage {
 	}
 	
 	public int countElementNumber(WebDriver driver, String locator, String... values) {
-		elements = findElementsByXPath(driver, locator, castToObject(locator, values));
+		elements = findElementsByXPath(driver, castToObject(locator, values));
 		return elements.size();
 	}
 	

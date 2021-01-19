@@ -2,9 +2,12 @@
 <suite name="Smart Petro" parallel="false">
 	<test name="Run on FireFox">
 		<classes>
-			<class name="com.smartpetro.documenttype.DocumentType_01_Add" />
-			<class name="com.smartpetro.documenttype.DocumentType_02_Edit" />
-			<class name="com.smartpetro.documenttype.DocumentType_03_Delete" />
+<!-- 			<class name="com.documenttype.DocumentType_01_Add" /> -->
+<!-- 			<class name="com.documenttype.DocumentType_02_Edit" /> -->
+<!-- 			<class name="com.documenttype.DocumentType_03_Delete" /> -->
+			<class name="com.othergoods.OtherGoods_01_Add" />
+<!-- 			<class name="com.othergoods.OtherGoods_02_Edit" /> -->
+<!-- 			<class name="com.othergoods.OtherGoods_03_Delete" /> -->
 		</classes>
 	</test>
 </suite> 

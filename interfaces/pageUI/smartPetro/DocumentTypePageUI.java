@@ -1,9 +1,9 @@
 package pageUI.smartPetro;
 
 public class DocumentTypePageUI {
-	public static final String MENU_LINK = "//a[@class='ng-star-inserted']/p[contains(text(),'HỆ THỐNG')]"; 
-	public static final String SUBMENU_LINK = "//a[@class='ng-star-inserted']/p[contains(text(),'D.MỤC CHỨNG TỪ')]" ;
-	public static final String CHILDMENU_LINK = "//span[contains(text(),'Loại chứng từ')]" ;
+	public static final String MENU_LINK = "//a[@class='ng-star-inserted']/p[contains(text(),'%s')]"; 
+	public static final String SUBMENU_LINK = "//a[@class='ng-star-inserted']/p[contains(text(),'%s')]" ;
+	public static final String CHILDMENU_LINK = "//span[contains(text(),'%s')]" ;
 	public static final String ADD_BUTTON = "//i[@class='ti-plus']"; 
 	public static final String DEL_BUTTON = "//i[@class='ti-minus']"; 
 	public static final String EDIT_BUTTON = "//i[@class='ti-pencil']"; 

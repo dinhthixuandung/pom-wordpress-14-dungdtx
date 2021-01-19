@@ -62,17 +62,17 @@ public class DocumentType_03_Delete {
 	@Test
 	public void TC_02_DeleteNotChooseRow() {
 
-		dashboardPage.clickToMenu();
-
-		dashboardPage.clickToSubMenu();
-
-		dashboardPage.clickToChildMenu();
+//		dashboardPage.clickToMenu();
+//
+//		dashboardPage.clickToSubMenu();
+//
+//		dashboardPage.clickToChildMenu();
 		
 		documentTypePage = new DocumentTypePageObject(driver);
 		
 		documentTypePage.clickToDeleteButton();
 
-		Assert.assertEquals(documentTypePage.getAlertMassege(), "Ch�?n dòng dữ liệu cần xóa.");
+		Assert.assertEquals(documentTypePage.getAlertMassege(), "Ch�?n dòng dữ liệu cần xóa.");
 
 		documentTypePage.clickToOkButton();
 

@@ -25,10 +25,16 @@ public class DataTablePageObject extends AbstractPage{
 		return (countElementNumber(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, textValue) == 1
 				&& isElementDisplayed(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, textValue));
 	}
+	
+	public boolean isOnlyOneRowDisplayed(String colName, String textValue) {
+		waitForElementVisible(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, colName,textValue);
+		return (countElementNumber(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, colName,textValue) == 1
+				&& isElementDisplayed(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, colName,textValue));
+	}
 
-	public void clickToDynamicRowByName(String editName) {
-		waitForElementClickable(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, editName);
-		clickToElement(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, editName);
+	public void clickToDynamicRowByName(String rowCode) {
+		waitForElementClickable(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, rowCode);
+		clickToElement(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, rowCode);
 		sleepInSeconds(1);
 	}
 

@@ -15,6 +15,7 @@ public class OtherGoodsPageObject extends AbstractPage{
 	}
 	
 	public void clickToAddButton() {
+		sleepInSeconds(3);
 		waitForElementClickable(driver, OtherGoodsPageUI.ADD_BUTTON);
 		clickToElement(driver, OtherGoodsPageUI.ADD_BUTTON);
 		sleepInSeconds(1);
@@ -24,6 +25,12 @@ public class OtherGoodsPageObject extends AbstractPage{
 		waitForElementClickable(driver, OtherGoodsPageUI.REFRESH_BUTTON);
 		clickToElement(driver, OtherGoodsPageUI.REFRESH_BUTTON);
 		sleepInSeconds(1);
+	}
+	
+	public void clickToCodeTextbox() {
+		waitForElementClickable(driver, OtherGoodsPageUI.CODE_TEXTBOX);
+		clickToElement(driver, OtherGoodsPageUI.CODE_TEXTBOX);
+		
 	}
 
 
@@ -58,6 +65,7 @@ public class OtherGoodsPageObject extends AbstractPage{
 	}
 		
 	public String getErrorMassege() {
+		sleepInSeconds(1);
 		waitForElementVisible(driver, OtherGoodsPageUI.ERROR_MESSAGE_TEXT);
 		return getElementText(driver, OtherGoodsPageUI.ERROR_MESSAGE_TEXT);
 		
@@ -102,7 +110,7 @@ public class OtherGoodsPageObject extends AbstractPage{
 	}
 
 	public void clickToDescriptionArea() {
-		waitForElementVisible(driver, OtherGoodsPageUI.DESCRIPTION_AREA);
+		waitForElementClickable(driver, OtherGoodsPageUI.DESCRIPTION_AREA);
 		clickToElement(driver, OtherGoodsPageUI.DESCRIPTION_AREA);
 		sleepInSeconds(1);
 	}
@@ -111,5 +119,40 @@ public class OtherGoodsPageObject extends AbstractPage{
 		
 		return isElementEnabled(driver, OtherGoodsPageUI.SAVE_BUTTON);
 	}
+
+	public void inputCodeTextbox(String code) {
+		waitForElementVisible(driver, OtherGoodsPageUI.CODE_TEXTBOX);
+		sendKeysToElement(driver, OtherGoodsPageUI.CODE_TEXTBOX, code);
+		
+	}
+
+	public void selectItemFromSelectList(String value) {
+		waitForElementVisible(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST, value);
+		selectItemInCustomDropdown(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST, OtherGoodsPageUI.ALL_UNIT_DROPDOWNLIST, value);
+		sleepInSeconds(1);
+	}
+
+	public void clickToSelectList() {
+		waitForElementClickable(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST);
+		clickToElement(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST);
+		sleepInSeconds(1);
+	}
+
+	public void selectItemsFromMultivSelectList(String[] distributions) {
+		waitForElementVisible(driver, OtherGoodsPageUI.DISTRIBUTE_MULTISELECTLIST);
+		selectItemsInMultiDropdown(driver, OtherGoodsPageUI.DISTRIBUTE_MULTISELECTLIST, OtherGoodsPageUI.ALL_DISTRIBUTE_MULTISELECTLIST, distributions);
+		sleepInSeconds(1);
+	}
+
+	public void inputSearchData(String code) {
+		waitForElementVisible(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST);
+//		clickToElement(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST);
+//		sendKeysToElement(driver, OtherGoodsPageUI.UNIT_SEARCH_DROPDOWNLIST, code);
+//		return
+	}
+
+	
+
+	
 
 }

@@ -62,11 +62,11 @@ public class OtherGoods_03_Delete {
 	@Test
 	public void TC_02_DeleteNotChooseRow() {
 
-		dashboardPage.clickToMenu();
-
-		dashboardPage.clickToSubMenu();
-
-		dashboardPage.clickToChildMenu();
+//		dashboardPage.clickToMenu();
+//
+//		dashboardPage.clickToSubMenu();
+//
+//		dashboardPage.clickToChildMenu();
 		
 		documentTypePage = new DocumentTypePageObject(driver);
 		

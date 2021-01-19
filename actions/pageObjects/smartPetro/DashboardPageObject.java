@@ -18,19 +18,19 @@ public class DashboardPageObject extends AbstractPage{
 		return isElementDisplayed(driver, DashboardPageUI.HEADER_MANAGEMENT_TEXT);
 	}
 
-	public void clickToMenu() {
-		waitForElementVisible(driver, DocumentTypePageUI.MENU_LINK);
-		clickToElement(driver, DocumentTypePageUI.MENU_LINK);
+	public void clickToMenu(String menu) {
+		waitForElementVisible(driver, DocumentTypePageUI.MENU_LINK, menu);
+		clickToElement(driver, DocumentTypePageUI.MENU_LINK, menu);
 	}
 
-	public void clickToSubMenu() {
-		waitForElementVisible(driver, DocumentTypePageUI.SUBMENU_LINK);
-		clickToElement(driver, DocumentTypePageUI.SUBMENU_LINK);
+	public void clickToSubMenu(String subMenu) {
+		waitForElementVisible(driver, DocumentTypePageUI.SUBMENU_LINK, subMenu);
+		clickToElement(driver, DocumentTypePageUI.SUBMENU_LINK,subMenu);
 	}
 
-	public void clickToChildMenu() {
-		waitForElementVisible(driver, DocumentTypePageUI.CHILDMENU_LINK);
-		clickToElement(driver, DocumentTypePageUI.CHILDMENU_LINK);
+	public void clickToChildMenu(String childMenu) {
+		waitForElementVisible(driver, DocumentTypePageUI.CHILDMENU_LINK, childMenu);
+		clickToElement(driver, DocumentTypePageUI.CHILDMENU_LINK, childMenu);
 	}
 	
 }
