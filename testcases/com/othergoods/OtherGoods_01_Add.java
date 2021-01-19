@@ -195,52 +195,7 @@ public class OtherGoods_01_Add {
 
 	}
 
-//	@Test
-//	public void TC_02_AddEmptyData() {
-//		dashboardPage.clickToMenu();
-//
-//		dashboardPage.clickToSubMenu();
-//
-//		dashboardPage.clickToChildMenu();
-//
-//		documentTypePage = new DocumentTypePageObject(driver);
-//
-//		documentTypePage.clickToAddButton();
-//		
-//		documentTypePage.inputNameTextbox("");
-//		
-//		documentTypePage.clickToOtherTextbox();
-//		
-//		Assert.assertEquals(documentTypePage.getErrorMassege(),"KhÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng");
-//		
-//		documentTypePage.clickToCloseButton();
-//		
-//		System.out.println("TC_02_AddEmptyData: Sucessfull");
-//		
-//	}
-//	
-//	@Test
-//	public void TC_03_AddValidData() {
-//		
-//		documentTypePage.clickToAddButton();
-//		
-//		indenticalName = name;
-//		documentTypePage.inputNameTextbox(name);
-//		documentTypePage.inputOtherNameTextbox(name);
-//		documentTypePage.inputDescriptionArea(name);
-//		
-//		documentTypePage.clickToSaveButton();
-//		documentTypePage.clickToAcceptButton();
-//		documentTypePage.clickToOkButton();
-//
-//		System.out.println("TC_03_AddValidData: Sucessfull");
-//	}
-//	
-//	@Test
-//	public void TC_04_AddIndenticalData() {
-//
-//		
-//	}
+
 
 	@AfterClass
 	public void afterClass() {
