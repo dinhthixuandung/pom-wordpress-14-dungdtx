@@ -45,6 +45,12 @@ public class OtherGoodsPageObject extends AbstractPage{
 		sendKeysToElement(driver, OtherGoodsPageUI.DESCRIPTION_AREA, description);
 		
 	}
+	
+	public void inputPriceTextbox(String value) {
+		waitForElementVisible(driver, OtherGoodsPageUI.PRICE_TEXTBOX);
+		sendKeysToElement(driver, OtherGoodsPageUI.PRICE_TEXTBOX, value);
+		sleepInSeconds(1);
+	}
 
 	public void clickToSaveButton() {
 		waitForElementClickable(driver, OtherGoodsPageUI.SAVE_BUTTON);
@@ -64,12 +70,24 @@ public class OtherGoodsPageObject extends AbstractPage{
 		sleepInSeconds(1);
 	}
 		
-	public String getErrorMassege() {
+	public String getErrorMessage(String fieldName) {
 		sleepInSeconds(1);
-		waitForElementVisible(driver, OtherGoodsPageUI.ERROR_MESSAGE_TEXT);
-		return getElementText(driver, OtherGoodsPageUI.ERROR_MESSAGE_TEXT);
+		waitForElementVisible(driver, OtherGoodsPageUI.ERR_MESSAGE, fieldName);
+		return getElementText(driver, OtherGoodsPageUI.ERR_MESSAGE, fieldName);
 		
 	}
+	
+//	public String getNameErrMessage() {
+//		sleepInSeconds(1);
+//		waitForElementVisible(driver, OtherGoodsPageUI.PRICE_ERR_MESSAGE);
+//		return getElementText(driver, OtherGoodsPageUI.PRICE_ERR_MESSAGE);
+//	}
+//	
+//	public String getPriceErrMessage() {
+//		sleepInSeconds(1);
+//		waitForElementVisible(driver, OtherGoodsPageUI.PRICE_ERR_MESSAGE);
+//		return getElementText(driver, OtherGoodsPageUI.PRICE_ERR_MESSAGE);
+//	}
 
 	public void clickToCloseButton() {
 		waitForElementClickable(driver, OtherGoodsPageUI.CLOSE_BUTTON);
@@ -94,6 +112,12 @@ public class OtherGoodsPageObject extends AbstractPage{
 		clickToElement(driver, OtherGoodsPageUI.NAME_TEXTBOX);
 		sleepInSeconds(1);
 		
+	}
+	
+	public void clickToPriceTextbox() {
+		waitForElementClickable(driver, OtherGoodsPageUI.PRICE_TEXTBOX);	
+		clickToElement(driver, OtherGoodsPageUI.PRICE_TEXTBOX);
+		sleepInSeconds(1);
 	}
 
 	public void clickToDeleteButton() {
@@ -144,12 +168,27 @@ public class OtherGoodsPageObject extends AbstractPage{
 		sleepInSeconds(1);
 	}
 
-	public void inputSearchData(String code) {
+	public void inputSearchData(String searchValue) {
 		waitForElementVisible(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST);
-//		clickToElement(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST);
-//		sendKeysToElement(driver, OtherGoodsPageUI.UNIT_SEARCH_DROPDOWNLIST, code);
-//		return
+		//clickToElement(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST);
+		//sendKeysToElement(driver, OtherGoodsPageUI.UNIT_SEARCH_DROPDOWNLIST, code);
+		searchItemInCustomDropdown(driver, OtherGoodsPageUI.UNIT_DROPDOWNLIST, OtherGoodsPageUI.UNIT_SEARCH_RESULT_DROPDOWNLIST, OtherGoodsPageUI.UNIT_SEARCH_DROPDOWNLIST, searchValue);
 	}
+
+	public String getDataFromUnitDropdownlist() {
+	
+		return getElementText(driver, OtherGoodsPageUI.UNIT_SEARCH_RESULT_DROPDOWNLIST);
+	}
+
+	
+
+	
+
+	
+
+	
+
+	
 
 	
 

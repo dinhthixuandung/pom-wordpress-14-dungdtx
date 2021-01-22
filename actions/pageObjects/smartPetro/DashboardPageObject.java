@@ -31,6 +31,7 @@ public class DashboardPageObject extends AbstractPage{
 	public void clickToChildMenu(String childMenu) {
 		waitForElementVisible(driver, DocumentTypePageUI.CHILDMENU_LINK, childMenu);
 		clickToElement(driver, DocumentTypePageUI.CHILDMENU_LINK, childMenu);
+		sleepInSeconds(3);
 	}
 	
 }

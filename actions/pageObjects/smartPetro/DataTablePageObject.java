@@ -37,5 +37,10 @@ public class DataTablePageObject extends AbstractPage{
 		clickToElement(driver, DataTablePageUI.DYNAMIC_ROW_TEXT, rowCode);
 		sleepInSeconds(1);
 	}
+	
+	public String getNameFirstRow() {
+		waitForElementVisible(driver, DataTablePageUI.FIRST_ROW_TEXT);
+		return getElementText(driver, DataTablePageUI.FIRST_ROW_TEXT);
+	}
 
 }

@@ -135,7 +135,7 @@ public class OtherGoods_01_Add {
 		otherGoodsPage.clickToCodeTextbox();
 		otherGoodsPage.inputCodeTextbox(code);
 
-		Assert.assertEquals(otherGoodsPage.getErrorMassege(), "Mã sản phẩm đã tồn tại");
+		Assert.assertEquals(otherGoodsPage.getErrorMessage("Mã SP"), "Mã sản phẩm đã tồn tại");
 
 		otherGoodsPage.clickToCloseButton();
 		
@@ -153,16 +153,31 @@ public class OtherGoods_01_Add {
 		otherGoodsPage.clickToCodeTextbox();
 		otherGoodsPage.inputCodeTextbox("~!@#$%^&*()_+");
 
-		Assert.assertEquals(otherGoodsPage.getErrorMassege(), "Không cho phép giá trị đặc biệt !@#$%^&*+");
+		Assert.assertEquals(otherGoodsPage.getErrorMessage("Mã SP"), "Không cho phép giá trị đặc biệt !@#$%^&*+");
 
 		otherGoodsPage.clickToCloseButton();
 
 		System.out.println("TC_05_InputGoodCodeIsSpecialcharacters: Sucessfull");
 	}
 
-
 	@Test
-	public void TC_06_InputInvalidDataIntoUnit() {
+	public void TC_06_IndenticalGoodName() {
+		otherGoodsPage = new OtherGoodsPageObject(driver);
+		
+		otherGoodsPage.clickToAddButton();
+
+		//otherGoodsPage.clickToCodeTextbox();
+		otherGoodsPage.inputNameTextbox(name);
+
+		Assert.assertEquals(otherGoodsPage.getErrorMessage("Tên SP"), "Tên sản phẩm đã tồn tại");
+
+		otherGoodsPage.clickToCloseButton();
+		
+		System.out.println("TC_06_IndenticalGoodName: Sucessfull");
+	}
+	
+	@Test
+	public void TC_07_InputInvalidDataIntoUnit() {
 		otherGoodsPage = new OtherGoodsPageObject(driver);
 
 		code = "code" + randomNumber();
@@ -177,25 +192,35 @@ public class OtherGoods_01_Add {
 		otherGoodsPage.clickToNameTextbox();
 		otherGoodsPage.inputNameTextbox(name);
 		
-		//otherGoodsPage.inputSearchData(code);
+		otherGoodsPage.inputSearchData("bình");
 		
-		Assert.assertEquals(otherGoodsPage.getErrorMassege(), "Không cho phép giá trị đặc biệt !@#$%^&*+");
+		otherGoodsPage.clickToCloseButton();
 
-
-		System.out.println("TC_02_InputGoodCode: Sucessfull");
+		System.out.println("TC_07_InputInvalidDataIntoUnit: Sucessfull");
 	}
 
 	@Test
 	public void TC_08_InputNegativeNumberIntoUnit() {
+//		dashboardPage.clickToMenu("HỆ THỐNG");
+//
+//		dashboardPage.clickToSubMenu("D.MỤC HÀNG HÓA");
+//
+//		dashboardPage.clickToChildMenu("Hàng hóa khác");
 
+		otherGoodsPage = new OtherGoodsPageObject(driver);
+		
+		otherGoodsPage = new OtherGoodsPageObject(driver);
+		
+		otherGoodsPage.clickToAddButton();
+
+		otherGoodsPage.inputPriceTextbox("0");
+
+		Assert.assertEquals(otherGoodsPage.getErrorMessage("Đơn giá"), "Phải lớn hơn :0");
+
+		otherGoodsPage.clickToCloseButton();
+		
+		System.out.println("TC_08_InputNegativeNumberIntoUnit: Sucessfull");
 	}
-
-	@Test
-	public void TC_09_IndenticalGoodName() {
-
-	}
-
-
 
 	@AfterClass
 	public void afterClass() {

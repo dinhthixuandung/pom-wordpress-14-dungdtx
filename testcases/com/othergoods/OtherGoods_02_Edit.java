@@ -9,6 +9,7 @@ import pageObjects.smartPetro.DashboardPageObject;
 import pageObjects.smartPetro.DataTablePageObject;
 import pageObjects.smartPetro.DocumentTypePageObject;
 import pageObjects.smartPetro.LoginPageObject;
+import pageObjects.smartPetro.OtherGoodsPageObject;
 
 import org.testng.annotations.BeforeClass;
 
@@ -24,13 +25,12 @@ public class OtherGoods_02_Edit {
 	WebDriver driver;
 	LoginPageObject loginPage;
 	DashboardPageObject dashboardPage;
-	DocumentTypePageObject documentTypePage;
-	String userID = "sysadmin";
-	String password = "sm@c.123";
-	String expectedRole = "Quáº£n trá»‹ cáº¥p cÃ´ng ty";
-	String expectedCompany = "CÃ´ng Ty Smac Petro - SÃ i GÃ²n";
-	String name = "Auto test" + randomNumber();
-	String indenticalName;
+	OtherGoodsPageObject otherGoodsPage;
+	String userID = "smartpetrosg";
+	String password = "123456";
+	String expectedRole = "Quản trị cấp công ty";
+	String expectedCompany = "Công Ty Smac Petro - Sài Gòn";
+	String name, code;
 	DataTablePageObject dataTablePage;
 
 	@BeforeClass
@@ -48,14 +48,14 @@ public class OtherGoods_02_Edit {
 		loginPage.inputToUserIDTextbox(userID);
 		loginPage.inputToPasswordTextbox(password);
 		loginPage.clickToLoginButton();
-		
-		loginPage.selectRole(expectedRole);		
-		
+
+		loginPage.selectRole(expectedRole);
 		loginPage.selectCompany(expectedCompany);
 		loginPage.clickToAcceptButton();
-		
+
 		dashboardPage = new DashboardPageObject(driver);
 		Assert.assertTrue(dashboardPage.isDisplayedHeader());
+
 		System.out.println("TC_01_Login: Sucessfull");
 	}
 
@@ -68,33 +68,61 @@ public class OtherGoods_02_Edit {
 
 		dashboardPage.clickToChildMenu("Hàng hóa khác");
 
-		documentTypePage = new DocumentTypePageObject(driver);
+		otherGoodsPage = new OtherGoodsPageObject(driver);
 
-		documentTypePage.clickToEditButton();
+		otherGoodsPage.clickToEditButton();
 
-		Assert.assertEquals(documentTypePage.getAlertMassege(), "Chá»?n dÃ²ng dá»¯ liá»‡u cáº§n chá»‰nh sá»­a.");
+		Assert.assertEquals(otherGoodsPage.getAlertMassege(), "Chọn dòng dữ liệu cần chỉnh sửa.");
 
-		documentTypePage.clickToOkButton();
+		otherGoodsPage.clickToOkButton();
 
 		System.out.println("TC_02_EditNotChooseRow: Sucessfull");
 
 	}
-
+	
 	@Test
-	public void TC_03_AddValidData() {
+	public void TC_03_EditValidData() {
 
-		documentTypePage = new DocumentTypePageObject(driver);
+		otherGoodsPage = new OtherGoodsPageObject(driver);
 
-		documentTypePage.clickToAddButton();
+		code = "code" + randomNumber();
 
-		documentTypePage.inputNameTextbox(name);
-		documentTypePage.inputOtherNameTextbox(name);
-		documentTypePage.inputDescriptionArea(name);
+		name = "Autotest" + randomNumber();
 
-		documentTypePage.clickToSaveButton();
-		documentTypePage.clickToAcceptButton();
-		documentTypePage.clickToOkButton();
-		documentTypePage.clickToRefreshButton();
+		otherGoodsPage.clickToAddButton();
+
+		otherGoodsPage.clickToCodeTextbox();
+		otherGoodsPage.inputCodeTextbox(code);
+
+		otherGoodsPage.clickToNameTextbox();
+		otherGoodsPage.inputNameTextbox(name);
+		
+		otherGoodsPage.selectItemFromSelectList("Thùng");
+
+		otherGoodsPage.clickToSaveButton();
+		otherGoodsPage.clickToAcceptButton();
+		otherGoodsPage.clickToOkButton();
+		
+		dataTablePage = new DataTablePageObject(driver);
+
+		dataTablePage.inputToColumnByName("Tên SP", name);
+
+		dataTablePage.clickToDynamicRowByName(name);
+
+		otherGoodsPage.clickToEditButton();
+		
+		otherGoodsPage.clickToNameTextbox();
+		otherGoodsPage.inputNameTextbox("Updated");
+		
+		otherGoodsPage.selectItemFromSelectList("Lít");
+		
+		String[] distributions = {"Dong ban to","Động BÀ BÉ"};
+		
+		otherGoodsPage.selectItemsFromMultivSelectList(distributions);
+
+		otherGoodsPage.clickToSaveButton();
+		otherGoodsPage.clickToAcceptButton();
+		otherGoodsPage.clickToOkButton();
 
 		System.out.println("TC_03_AddValidData: Sucessfull");
 	}
@@ -104,19 +132,19 @@ public class OtherGoods_02_Edit {
 
 		dataTablePage = new DataTablePageObject(driver);
 
-		dataTablePage.inputToColumnByName("TÃªn loáº¡i chá»©ng tá»«", name);
+		dataTablePage.inputToColumnByName("Tên SP", "Updated");
 
-		dataTablePage.clickToDynamicRowByName(name);
+		dataTablePage.clickToDynamicRowByName("Updated");
 
-		documentTypePage.clickToEditButton();
+		otherGoodsPage.clickToEditButton();
 
-		documentTypePage.clickToNameTextbox();
-		documentTypePage.clearData();
-		documentTypePage.clickToOtherTextbox();
+		otherGoodsPage.clickToNameTextbox();
+		otherGoodsPage.clearData();
+		otherGoodsPage.clickToDescriptionArea();
 
-		Assert.assertEquals(documentTypePage.getErrorMassege(), "KhÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng");
+		Assert.assertEquals(otherGoodsPage.getErrorMessage("Tên SP"), "Không được để trống");
 
-		documentTypePage.clickToCloseButton();
+		otherGoodsPage.clickToCloseButton();
 
 		System.out.println("TC_04_EditNotInputRequireField: Sucessfull");
 	}
@@ -125,42 +153,25 @@ public class OtherGoods_02_Edit {
 	public void TC_05_Edit_IndenticalData() {
 
 		dataTablePage = new DataTablePageObject(driver);
+		
+		String indentical = dataTablePage.getNameFirstRow();
 
-		dataTablePage.inputToColumnByName("TÃªn loáº¡i chá»©ng tá»«", name);
+		dataTablePage.inputToColumnByName("Tên SP", "Updated");
 
-		dataTablePage.clickToDynamicRowByName(name);
+		dataTablePage.clickToDynamicRowByName("Updated");
 
-		documentTypePage.clickToEditButton();
+		otherGoodsPage.clickToEditButton();
 
-		documentTypePage.inputNameTextbox("HoÃ¡ Ä‘Æ¡n giÃ¡ trá»‹ gia tÄƒng");
+		
+		otherGoodsPage.inputNameTextbox(indentical);
 
-		Assert.assertEquals(documentTypePage.getErrorMassege(), "TÃªn loáº¡i chá»©ng tá»« Ä‘Ã£ tá»“n táº¡i");
+		Assert.assertEquals(otherGoodsPage.getErrorMessage("Tên SP"), "Tên sản phẩm đã tồn tại");
 
-		documentTypePage.clickToCloseButton();
+		otherGoodsPage.clickToCloseButton();
 
 		System.out.println("TC_05_Edit_IndenticalData: Sucessfull");
 	}
 
-	@Test
-	public void TC_06_EditWithValidData() {
-		dataTablePage = new DataTablePageObject(driver);
-
-		dataTablePage.inputToColumnByName("TÃªn loáº¡i chá»©ng tá»«", name);
-
-		dataTablePage.clickToDynamicRowByName(name);
-
-		documentTypePage.clickToEditButton();
-
-		documentTypePage.inputNameTextbox("edited" + randomNumber());
-		documentTypePage.inputOtherNameTextbox("edited" + randomNumber());
-		documentTypePage.inputDescriptionArea("edited" + randomNumber());
-
-		documentTypePage.clickToSaveButton();
-		documentTypePage.clickToAcceptButton();
-		documentTypePage.clickToOkButton();
-
-		System.out.println("TC_06_EditWithValidData: Sucessfull");
-	}
 
 	@AfterClass
 	public void afterClass() {

@@ -1,5 +1,6 @@
 package commons;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.concurrent.TimeUnit;
 
 public class AbstractPage {
 
@@ -22,7 +24,21 @@ public class AbstractPage {
 	private List<WebElement> elements;
 	private WebDriverWait explicitWait;
 	private JavascriptExecutor jsExecutor;
-		
+	List<WebElement> rows;
+	List<WebElement> columns;
+	List<String> list = Arrays.asList("January", "February", "March", "April",
+			"May", "June", "July", "August", "September", "October",
+			"November", "December");
+
+	int expMonth;
+	int expYear;
+	String expDate = null;
+	
+	// Calendar Month and Year.
+	String calMonth = null;
+	String calYear = null;
+	boolean dateNotFound;
+	
 	public void openUrl(WebDriver driver, String urlValue) {
 		driver.get(urlValue);
 	}
@@ -166,6 +182,10 @@ public class AbstractPage {
 		return findElementByXPath(driver, locator).getText().trim();
 	}
 	
+	public String getElementText(WebDriver driver, String locator, String... values) {
+		return findElementByXPath(driver, castToObject(locator, values)).getText().trim();
+	}
+	
 	public String getElementAttribute(WebDriver driver, String locator, String attributeName) {
 		return findElementByXPath(driver, locator).getAttribute(attributeName);
 	}
@@ -188,8 +208,7 @@ public class AbstractPage {
 		}
 	}
 	
-	public void selectItemInCustomDropdown(WebDriver driver, String parenXPath, String allItemXPath,
-			String expectedValueItem) {
+	public void selectItemInCustomDropdown(WebDriver driver, String parenXPath, String allItemXPath, String expectedValueItem) {
 		element = findElementByXPath(driver, parenXPath);
 		jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].click();", element);
@@ -240,33 +259,69 @@ public class AbstractPage {
 	}
 	
 	
-//	public void searchItemInCustomDropdown(WebDriver driver, String parenXPath, String expectedValueItem) {
-//		element = findElementByXPath(driver, parenXPath);
+	public void searchItemInCustomDropdown(WebDriver driver, String parenXPath, String searchResult, String searchXpath, String searchValue) {
+		//element = findElementByXPath(driver, parenXPath);
 //		jsExecutor = (JavascriptExecutor) driver;
 //		jsExecutor.executeScript("arguments[0].click();", element);
-//		sleepInSeconds(1);
-//
-//		explicitWait = new WebDriverWait(driver, longTime);
-//		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXPath(allItemXPath)));
-//
-//		elements = findElementsByXPath(driver, allItemXPath);
-//
-//		for (WebElement childElement : elements) {
-//			if (childElement.getText().equals(expectedValueItem)) {
-//				if (childElement.isDisplayed()) {
-//					childElement.click();
-//				} else {
-//					jsExecutor.executeScript("arguments[0].scrollIntoView(true);", childElement);
-//					sleepInSeconds(1);
-//					jsExecutor.executeScript("arguments[0].click();", childElement);
-//				}
-//				sleepInSeconds(1);
-//				break;
-//			}
-//		}
-//
-//	}
+//		element = findElementByXPath(driver, searchXpath);
+//		jsExecutor.executeScript("arguments[0].setAttribute('value','abc')",element);
+		
+		clickToElementJS(driver, parenXPath);
+		sendKeysToElement(driver, searchXpath, searchValue);
+//		clickToElementJS(driver, searchXpath);
+//		sendKeyToElementByJS(driver, searchXpath, searchValue);
+		explicitWait = new WebDriverWait(driver, longTime);
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXPath(searchResult)));
 
+		elements = findElementsByXPath(driver, searchResult);
+
+		//if(elements.size() != 1 ) {
+			for (WebElement childElement : elements) {
+				if (childElement.getText().equals(searchValue)) {
+					if (childElement.isDisplayed()) {
+						childElement.click();
+					} else {
+						jsExecutor.executeScript("arguments[0].scrollIntoView(true);", childElement);
+						sleepInSeconds(1);
+						jsExecutor.executeScript("arguments[0].click();", childElement);
+					}
+					sleepInSeconds(1);
+					break;
+				}
+			}
+		//}
+	}
+
+	public void testJQueryDatePicket(WebDriver driver) throws InterruptedException {
+		driver.get("http://jqueryui.com/datepicker/");
+		driver.switchTo().frame(0);
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		driver.findElement(By.id("datepicker")).click();
+		dateNotFound = true;
+		// Set the date here. Eg: 11/01/2016.
+		expMonth = 1;
+		expYear = 2016;
+		expDate = "11";
+		while (dateNotFound) {
+
+			calMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+			   calYear = driver.findElement(By.className("ui-datepicker-year")).getText();
+			   if(list.indexOf(calMonth)+1 == expMonth && (expYear == Integer.parseInt(calYear)))
+			   {
+			    selectDate(expDate);
+			    dateNotFound = false;
+			   }
+			   else if(list.indexOf(calMonth)+1 < expMonth && (expYear == Integer.parseInt(calYear)) || expYear > Integer.parseInt(calYear))
+			   {
+			    driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div/a[2]/span")).click();
+			   }
+			   else if(list.indexOf(calMonth)+1 > expMonth && (expYear == Integer.parseInt(calYear)) || expYear < Integer.parseInt(calYear))
+			   {
+			    driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div/a[1]/span")).click();
+			}
+		}
+		Thread.sleep(3000);
+	}
 
 	public int countElementNumber(WebDriver driver, String locator) {
 		elements = findElementsByXPath(driver, locator);

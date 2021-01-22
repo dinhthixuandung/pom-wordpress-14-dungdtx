@@ -12,6 +12,7 @@ public class OtherGoodsPageUI {
 	public static final String CODE_TEXTBOX = "//input[@id='Code']";
 	public static final String NAME_TEXTBOX = "//input[@id='Name']";
 	public static final String UNIT_SEARCH_DROPDOWNLIST = "//p-dropdown[@id='UnitCode']/div/div/div/input";
+	public static final String UNIT_SEARCH_RESULT_DROPDOWNLIST = "//p-dropdown[@id='UnitCode']/div/div/div/ul/li";
 	public static final String UNIT_DROPDOWNLIST = "//p-dropdown[@id='UnitCode']/div";
 	public static final String ALL_UNIT_DROPDOWNLIST = "//p-dropdown[@id='UnitCode']/div/div/div/ul/li/div//div";
 
@@ -26,7 +27,9 @@ public class OtherGoodsPageUI {
 	public static final String CLOSE_BUTTON = "//button[text()=' Đóng']";
 	public static final String ACCEPT_BUTTON = "//button[text()='Chấp nhận']";
 	public static final String OK_BUTTON = "//button[text()='OK']";
-	public static final String ERROR_MESSAGE_TEXT = "//div[@class='col-sm-4']/small";
+	//public static final String ERROR_MESSAGE_TEXT = "//div[@class='col-sm-4']/small";
+	
+	public static final String ERR_MESSAGE = "//label[contains(text(),'%s')]/parent::div/following-sibling::div/small";
 	public static final String ALERT_BUTTON = "//div[@class='swal2-modal swal2-show']";
 	public static final String ALERT_TEXT = "//h2[@class='swal2-title']";
 }
