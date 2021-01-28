@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import commons.AbstractPage;
 import pageUI.smartPetro.DocumentTypePageUI;
 import pageUI.smartPetro.OtherGoodsPageUI;
+import pageUI.smartPetro.ToolbarAndMenuPageUI;
 
 public class OtherGoodsPageObject extends AbstractPage{
 	WebDriver driver;
@@ -16,14 +17,14 @@ public class OtherGoodsPageObject extends AbstractPage{
 	
 	public void clickToAddButton() {
 		sleepInSeconds(3);
-		waitForElementClickable(driver, OtherGoodsPageUI.ADD_BUTTON);
-		clickToElement(driver, OtherGoodsPageUI.ADD_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.ADD_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.ADD_BUTTON);
 		sleepInSeconds(1);
 	}
 	
 	public void clickToRefreshButton() {
-		waitForElementClickable(driver, OtherGoodsPageUI.REFRESH_BUTTON);
-		clickToElement(driver, OtherGoodsPageUI.REFRESH_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.REFRESH_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.REFRESH_BUTTON);
 		sleepInSeconds(1);
 	}
 	
@@ -53,27 +54,27 @@ public class OtherGoodsPageObject extends AbstractPage{
 	}
 
 	public void clickToSaveButton() {
-		waitForElementClickable(driver, OtherGoodsPageUI.SAVE_BUTTON);
-		clickToElement(driver, OtherGoodsPageUI.SAVE_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.SAVE_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.SAVE_BUTTON);
 		sleepInSeconds(1);
 	}
 	
 	public void clickToAcceptButton() {
-		waitForElementClickable(driver, OtherGoodsPageUI.ACCEPT_BUTTON);
-		clickToElement(driver, OtherGoodsPageUI.ACCEPT_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.ACCEPT_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.ACCEPT_BUTTON);
 		sleepInSeconds(1);
 	}
 	
 	public void clickToOkButton() {
-		waitForElementClickable(driver, OtherGoodsPageUI.OK_BUTTON);
-		clickToElement(driver, OtherGoodsPageUI.OK_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.OK_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.OK_BUTTON);
 		sleepInSeconds(1);
 	}
 		
 	public String getErrorMessage(String fieldName) {
 		sleepInSeconds(1);
-		waitForElementVisible(driver, OtherGoodsPageUI.ERR_MESSAGE, fieldName);
-		return getElementText(driver, OtherGoodsPageUI.ERR_MESSAGE, fieldName);
+		waitForElementVisible(driver, ToolbarAndMenuPageUI.ERR_MESSAGE, fieldName);
+		return getElementText(driver, ToolbarAndMenuPageUI.ERR_MESSAGE, fieldName);
 		
 	}
 	
@@ -90,21 +91,21 @@ public class OtherGoodsPageObject extends AbstractPage{
 //	}
 
 	public void clickToCloseButton() {
-		waitForElementClickable(driver, OtherGoodsPageUI.CLOSE_BUTTON);
-		clickToElement(driver, OtherGoodsPageUI.CLOSE_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.CLOSE_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.CLOSE_BUTTON);
 		sleepInSeconds(1);
 	}
 
 	public void clickToEditButton() {
-		waitForElementClickable(driver, OtherGoodsPageUI.EDIT_BUTTON);
-		clickToElement(driver, OtherGoodsPageUI.EDIT_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.EDIT_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.EDIT_BUTTON);
 		sleepInSeconds(1);
 	}
 
 
 	public String getAlertMassege() {
-		waitForElementVisible(driver, OtherGoodsPageUI.ALERT_TEXT);
-		return getElementText(driver, OtherGoodsPageUI.ALERT_TEXT);
+		waitForElementVisible(driver, ToolbarAndMenuPageUI.ALERT_TEXT);
+		return getElementText(driver, ToolbarAndMenuPageUI.ALERT_TEXT);
 	}
 
 	public void clickToNameTextbox() {
@@ -121,8 +122,8 @@ public class OtherGoodsPageObject extends AbstractPage{
 	}
 
 	public void clickToDeleteButton() {
-		waitForElementClickable(driver, DocumentTypePageUI.DEL_BUTTON);
-		clickToElement(driver, DocumentTypePageUI.DEL_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.DEL_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.DEL_BUTTON);
 		sleepInSeconds(1);
 	}
 
@@ -141,7 +142,7 @@ public class OtherGoodsPageObject extends AbstractPage{
 
 	public boolean enableSaveButton() {
 		
-		return isElementEnabled(driver, OtherGoodsPageUI.SAVE_BUTTON);
+		return isElementEnabled(driver, ToolbarAndMenuPageUI.SAVE_BUTTON);
 	}
 
 	public void inputCodeTextbox(String code) {

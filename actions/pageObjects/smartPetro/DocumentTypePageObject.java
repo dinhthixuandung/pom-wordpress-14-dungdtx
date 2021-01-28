@@ -6,6 +6,7 @@ import org.openqa.selenium.remote.server.handler.SwitchToWindow;
 
 import commons.AbstractPage;
 import pageUI.smartPetro.DocumentTypePageUI;
+import pageUI.smartPetro.ToolbarAndMenuPageUI;
 
 public class DocumentTypePageObject extends AbstractPage{
 	WebDriver driver;
@@ -15,14 +16,14 @@ public class DocumentTypePageObject extends AbstractPage{
 	}
 
 	public void clickToAddButton() {
-		waitForElementClickable(driver, DocumentTypePageUI.ADD_BUTTON);
-		clickToElement(driver, DocumentTypePageUI.ADD_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.ADD_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.ADD_BUTTON);
 		sleepInSeconds(1);
 	}
 	
 	public void clickToRefreshButton() {
-		waitForElementClickable(driver, DocumentTypePageUI.REFRESH_BUTTON);
-		clickToElement(driver, DocumentTypePageUI.REFRESH_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.REFRESH_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.REFRESH_BUTTON);
 		sleepInSeconds(1);
 	}
 
@@ -46,45 +47,45 @@ public class DocumentTypePageObject extends AbstractPage{
 	}
 
 	public void clickToSaveButton() {
-		waitForElementClickable(driver, DocumentTypePageUI.SAVE_BUTTON);
-		clickToElement(driver, DocumentTypePageUI.SAVE_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.SAVE_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.SAVE_BUTTON);
 		sleepInSeconds(1);
 	}
 	
 	public void clickToAcceptButton() {
-		waitForElementClickable(driver, DocumentTypePageUI.ACCEPT_BUTTON);
-		clickToElement(driver, DocumentTypePageUI.ACCEPT_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.ACCEPT_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.ACCEPT_BUTTON);
 		sleepInSeconds(1);
 	}
 	
 	public void clickToOkButton() {
-		waitForElementClickable(driver, DocumentTypePageUI.OK_BUTTON);
-		clickToElement(driver, DocumentTypePageUI.OK_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.OK_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.OK_BUTTON);
 		sleepInSeconds(1);
 	}
 		
 	public String getErrorMassege() {
-		waitForElementVisible(driver, DocumentTypePageUI.ERROR_MESSAGE_TEXT);
-		return getElementText(driver, DocumentTypePageUI.ERROR_MESSAGE_TEXT);
+		waitForElementVisible(driver, ToolbarAndMenuPageUI.ERR_MESSAGE);
+		return getElementText(driver, ToolbarAndMenuPageUI.ERR_MESSAGE);
 		
 	}
 
 	public void clickToCloseButton() {
-		waitForElementClickable(driver, DocumentTypePageUI.CLOSE_BUTTON);
-		clickToElement(driver, DocumentTypePageUI.CLOSE_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.CLOSE_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.CLOSE_BUTTON);
 		sleepInSeconds(1);
 	}
 
 	public void clickToEditButton() {
-		waitForElementClickable(driver, DocumentTypePageUI.EDIT_BUTTON);
-		clickToElement(driver, DocumentTypePageUI.EDIT_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.EDIT_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.EDIT_BUTTON);
 		sleepInSeconds(1);
 	}
 
 
 	public String getAlertMassege() {
-		waitForElementVisible(driver, DocumentTypePageUI.ALERT_TEXT);
-		return getElementText(driver, DocumentTypePageUI.ALERT_TEXT);
+		waitForElementVisible(driver, ToolbarAndMenuPageUI.ALERT_TEXT);
+		return getElementText(driver, ToolbarAndMenuPageUI.ALERT_TEXT);
 	}
 
 	public void clickToNameTextbox() {
@@ -95,8 +96,8 @@ public class DocumentTypePageObject extends AbstractPage{
 	}
 
 	public void clickToDeleteButton() {
-		waitForElementClickable(driver, DocumentTypePageUI.DEL_BUTTON);
-		clickToElement(driver, DocumentTypePageUI.DEL_BUTTON);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.DEL_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.DEL_BUTTON);
 		sleepInSeconds(1);
 	}
 
