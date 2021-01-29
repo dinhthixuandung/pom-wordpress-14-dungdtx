@@ -3,7 +3,7 @@ package pageUI.smartPetro;
 public class ContractPageUI {
 	public static final String POLICYDATE_DATETIMEPICKER = "//p-calendar[@formcontrolname='PolicyDate']/span/button/span[contains(@class,'ui-button-icon-left')]";
 	
-	public static final String ALL_DATE_DATETIMEPICKER = "//p-calendar[@formcontrolname='PolicyDate']/span/div/table/tbody/tr/td[@class='ng-tns-c21-24 ng-star-inserted']";
+	public static final String ALL_DATE_DATETIMEPICKER = "//p-calendar[@formcontrolname='PolicyDate']/span/div/table/tbody/tr/td/a";
 	
 	public static final String MONTH_TEXT = "//div[@class='ui-datepicker-title']/span[contains(@class,'ui-datepicker-month')]";
 	

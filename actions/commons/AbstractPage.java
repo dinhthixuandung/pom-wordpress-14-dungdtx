@@ -28,7 +28,7 @@ public class AbstractPage {
 	// WebElement dateWidget;
 	List<WebElement> rows;
 	List<WebElement> columns;
-	List<String> list = Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August",
+	List<String> listMonth = Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August",
 			"September", "October", "November", "December");
 
 	// Calendar Month and Year.
@@ -356,18 +356,62 @@ public class AbstractPage {
 			yearActual = Integer.parseInt(findElementByXPath(driver, yearXpath).getText());
 		}
 
-		while (!findElementByXPath(driver, monthXpath).getText().equals(expMonth)) {
+		String month = changeMonthToNumber(driver, monthXpath);
+		while (!expMonth.equals(month)) {
 			findElementByXPath(driver, nextXpath).click();
+			month = changeMonthToNumber(driver, monthXpath);
 		}
 
 		List<WebElement> days = findElementsByXPath(driver, allDaysXpath);
+		int count = days.size();
 
-		for (WebElement day : days) {
+		for (int i = 0; i < count; i++){ 
+		    String text = findElementsByXPath(driver, allDaysXpath).get(i).getText();
+		    if (text.equalsIgnoreCase(expDay)){
+		    	findElementsByXPath(driver, allDaysXpath).get(i).click();
+		         break;
+		     }
+		}
+		
+//		for (WebElement day : days) {
+//
+//			if (day.getText().equalsIgnoreCase(expDay)) {
+//				day.click();
+//				break;
+//			}
+//		}
+	}
 
-			if (day.getText().equalsIgnoreCase(expDay)) {
-				day.click();
-				break;
-			}
+	public String changeMonthToNumber(WebDriver driver, String monthXpath) {
+		String month = findElementByXPath(driver, monthXpath).getText();
+		
+		switch(month) {
+		case "January":
+			return "01";
+		case "February":
+			return "02";	
+		case "March":
+			return "03";
+		case "April":
+			return "04";
+		case "May":
+			return "05";
+		case "June":
+			return "06";
+		case "July":
+			return "07";
+		case "August":
+			return "08";
+		case "September":
+			return "09";
+		case "October":
+			return "10";
+		case "November":
+			return "11";
+		case "December":
+			return "12";
+		default:
+			return "0";
 		}
 	}
 
