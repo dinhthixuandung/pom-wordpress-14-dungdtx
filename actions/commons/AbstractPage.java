@@ -287,57 +287,13 @@ public class AbstractPage {
 		// }
 	}
 
-//	public void selectDateFromDatetimePicker(WebDriver driver, String locator, String date) {
-//		
-//		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-//		clickToElement(driver, locator);
-//		dateNotFound = true;
-//		
-//		String str[] = date.split("/");
-//		int expDay = Integer.parseInt(str[0]);
-//		int expMonth = Integer.parseInt(str[1]);
-//		int expYear = Integer.parseInt(str[2]);
-//	        
-//		while (dateNotFound) {
-//
-//			calMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
-//			   calYear = driver.findElement(By.className("ui-datepicker-year")).getText();
-//			   if(list.indexOf(calMonth)+1 == expMonth && (expYear == Integer.parseInt(calYear)))
-//			   {
-//			    selectDate(driver, locator, date);
-//			    dateNotFound = false;
-//			   }
-//			   else if(list.indexOf(calMonth)+1 < expMonth && (expYear == Integer.parseInt(calYear)) || expYear > Integer.parseInt(calYear))
-//			   {
-//			    driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div/a[2]/span")).click();
-//			   }
-//			   else if(list.indexOf(calMonth)+1 > expMonth && (expYear == Integer.parseInt(calYear)) || expYear < Integer.parseInt(calYear))
-//			   {
-//			    driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div/a[1]/span")).click();
-//			}
-//		}
-//		sleepInSeconds(3);
-//	}
-//	
-//	public void selectDate(WebDriver driver, String locator, String date) {
-//		
-//		element = findElementByXPath(driver, locator);
-//		rows = element.findElements(By.tagName("tr"));
-//		columns = element.findElements(By.tagName("td"));
-// 
-//		for (WebElement cell : columns) {
-//			if (cell.getText().equals(date)) {
-//				cell.findElement(By.linkText(date)).click();
-//				break;
-//			}
-//		}
-//	}
+
 
 	public void selectDateFromDatetimePicker(WebDriver driver, String datetimepickerXpath, String allDaysXpath,
 			String monthXpath, String yearXpath, String prevXpath, String nextXpath, String expDate) {
 		String dateStr[] = expDate.split("/");
-		String expDay = dateStr[0];
-		String expMonth = dateStr[1];
+		int expDay = Integer.parseInt(dateStr[0]);
+		int expMonth = Integer.parseInt(dateStr[1]);
 		int expYear = Integer.parseInt(dateStr[2]);
 
 		// clickToElement(driver, datetimepickerXpath);
@@ -356,23 +312,27 @@ public class AbstractPage {
 			yearActual = Integer.parseInt(findElementByXPath(driver, yearXpath).getText());
 		}
 
-		String month = changeMonthToNumber(driver, monthXpath);
-		while (!expMonth.equals(month)) {
+		
+		int  month = Integer.parseInt(changeMonthToNumber(driver, monthXpath));
+		// while (!expMonth.equals(month)) {
+		while (expMonth != month) {
 			findElementByXPath(driver, nextXpath).click();
-			month = changeMonthToNumber(driver, monthXpath);
+			month = Integer.parseInt(changeMonthToNumber(driver, monthXpath));
+			//month = Integer.parseInt(findElementByXPath(driver, monthXpath).getText());
 		}
 
 		List<WebElement> days = findElementsByXPath(driver, allDaysXpath);
 		int count = days.size();
 
-		for (int i = 0; i < count; i++){ 
-		    String text = findElementsByXPath(driver, allDaysXpath).get(i).getText();
-		    if (text.equalsIgnoreCase(expDay)){
-		    	findElementsByXPath(driver, allDaysXpath).get(i).click();
-		         break;
-		     }
+		for (int i = 0; i < count; i++) {
+			int day = Integer.parseInt(findElementsByXPath(driver, allDaysXpath).get(i).getText());
+			//if (text.equalsIgnoreCase(expDay)) {
+			if(expDay == day) {
+				findElementsByXPath(driver, allDaysXpath).get(i).click();
+				break;
+			}
 		}
-		
+
 //		for (WebElement day : days) {
 //
 //			if (day.getText().equalsIgnoreCase(expDay)) {
@@ -384,12 +344,12 @@ public class AbstractPage {
 
 	public String changeMonthToNumber(WebDriver driver, String monthXpath) {
 		String month = findElementByXPath(driver, monthXpath).getText();
-		
-		switch(month) {
+
+		switch (month) {
 		case "January":
 			return "01";
 		case "February":
-			return "02";	
+			return "02";
 		case "March":
 			return "03";
 		case "April":
@@ -412,6 +372,27 @@ public class AbstractPage {
 			return "12";
 		default:
 			return "0";
+		}
+	}
+	
+	public void selectVehicleFromTreeview(WebDriver driver, String arrowXpath, String parentXpath, String childXpath, String vehicleXpath, String parent, String[] children) {
+		if (isElementDisplayed(driver, arrowXpath, parent) == true) {
+			clickToElement(driver, arrowXpath, parent);
+			elements = findElementsByXPath(driver, childXpath, parent);
+
+			if (elements.size() > 0) {
+				for (String child : children) {
+					for (WebElement element : elements) {
+						String stemp = element.getText();
+						if (stemp.equals(child)) {
+							clickToElement(driver, vehicleXpath, parent, child);
+							break;
+						}
+					}
+				}
+			}
+		}else{
+			clickToElement(driver, parentXpath, parent);
 		}
 	}
 

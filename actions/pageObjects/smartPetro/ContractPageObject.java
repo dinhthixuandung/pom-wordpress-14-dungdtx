@@ -21,16 +21,70 @@ public class ContractPageObject extends AbstractPage {
 		clickToElement(driver, ToolbarAndMenuPageUI.ADD_BUTTON);
 		sleepInSeconds(1);
 	}
+	
+	public void clickToSaveButton() {
+		sleepInSeconds(3);
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.SAVE_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.SAVE_BUTTON);
+		sleepInSeconds(1);
+	}
 
-	public void selectDateFromCalendar(String expDate) {
+	public void selectPolicyDate(String expDate) {
 		waitForElementClickable(driver, ContractPageUI.POLICYDATE_DATETIMEPICKER);
 		clickToElement(driver, ContractPageUI.POLICYDATE_DATETIMEPICKER);
 		sleepInSeconds(1);
 		selectDateFromDatetimePicker(driver, ContractPageUI.POLICYDATE_DATETIMEPICKER,
 				ContractPageUI.ALL_DATE_DATETIMEPICKER, ContractPageUI.MONTH_TEXT, ContractPageUI.YEAR_TEXT,
 				ContractPageUI.PRE_HREF, ContractPageUI.NEXT_HREF, expDate);
-		// WebDriver driver, String datetimepickerXpath, String allDaysXpath, String
-		// monthXpath, String buttonNextXpath, String expDate
+		
 	}
 
+	public void inputIntoPolicyCodeTextbox(String value) {
+		waitForElementVisible(driver, ContractPageUI.POLICY_CODE_TEXTBOX);
+		sendKeysToElement(driver, ContractPageUI.POLICY_CODE_TEXTBOX, value);
+		sleepInSeconds(1);
+	}
+	
+	public void inputIntoCreditLimitTextbox(String value) {
+		waitForElementVisible(driver, ContractPageUI.CREDIT_LIMIT_TEXTBOX);
+		sendKeysToElement(driver, ContractPageUI.CREDIT_LIMIT_TEXTBOX, value);
+		sleepInSeconds(1);
+	}
+	
+	public void inputIntoDueCycleTextbox(String value) {
+		waitForElementVisible(driver, ContractPageUI.DUE_CYCLCE_TEXTBOX);
+		sendKeysToElement(driver, ContractPageUI.DUE_CYCLCE_TEXTBOX, value);
+		sleepInSeconds(1);
+	}
+	
+	public void inputIntoDayPastDueTextbox(String value) {
+		waitForElementVisible(driver, ContractPageUI.DAY_PAST_DUE_TEXTBOX);
+		sendKeysToElement(driver, ContractPageUI.DAY_PAST_DUE_TEXTBOX, value);
+		sleepInSeconds(1);
+	}
+	
+	public void inputIntoCreditLimitVehicleTextbox(String value) {
+		sendKeysToElement(driver, ContractPageUI.CREDIT_LIMIT_VEHICLE_TEXTBOX, value);
+		sleepInSeconds(1);
+	}
+
+	public void selectFromDate(String today) {
+		
+	}
+
+	public void selectToDate(String date) {
+		waitForElementClickable(driver, ContractPageUI.ENDDATE_DATETIMEPICKER);
+		clickToElement(driver, ContractPageUI.ENDDATE_DATETIMEPICKER);
+		sleepInSeconds(1);
+		selectDateFromDatetimePicker(driver, ContractPageUI.ENDDATE_DATETIMEPICKER,
+				ContractPageUI.ALL_ENDDATE_DATETIMEPICKER, ContractPageUI.MONTH_TEXT, ContractPageUI.YEAR_TEXT,
+				ContractPageUI.PRE_HREF, ContractPageUI.NEXT_HREF, date);
+	}
+
+	public void selectVehicleTreeview(String parent, String[] children) {
+		waitForElementClickable(driver, ContractPageUI.PARENT_TREEVIEW, parent);
+		selectVehicleFromTreeview(driver, ContractPageUI.ARROW_TREEVIEW, ContractPageUI.PARENT_TREEVIEW, ContractPageUI.CHILDREN_TREEVIEW, ContractPageUI.A_CHILD_CHECKBOX, parent, children);
+		
+	}
+	
 }

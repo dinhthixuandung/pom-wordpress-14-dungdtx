@@ -16,7 +16,8 @@ public class ToolbarAndMenuPageUI {
 	public static final String CHILDMENU_LINK = "//span[contains(text(),'%s')]" ;
 	
 	//DETAIL BUTTON
-	public static final String SAVE_BUTTON = "//button[text()='Lưu']";
+	//public static final String SAVE_BUTTON = "//button[text()='Lưu']";
+	public static final String SAVE_BUTTON = "//button[contains(text(),'Lưu')]";
 	public static final String CLOSE_BUTTON = "//button[text()=' Đóng']";
 	public static final String ACCEPT_BUTTON = "//button[text()='Chấp nhận']";
 	public static final String OK_BUTTON = "//button[text()='OK']";

@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.james.mime4j.field.datetime.DateTime;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
@@ -25,7 +26,7 @@ public class Contract_01_Add {
 	String password = "123456";
 	String expectedRole = "Quản trị cấp công ty";
 	String expectedCompany = "Công Ty Smac Petro - Sài Gòn";
-	
+
 	@BeforeClass
 	public void beforeClass() {
 		driver = new FirefoxDriver();
@@ -50,7 +51,7 @@ public class Contract_01_Add {
 
 		System.out.println("TC_01_Login: Sucessfull");
 	}
-	
+
 	@Test
 	public void ValidData() {
 		dashboardPage.clickToMenu("BÁN HÀNG");
@@ -58,11 +59,39 @@ public class Contract_01_Add {
 
 		contractPage = new ContractPageObject(driver);
 		contractPage.clickToAddButton();
-		contractPage.selectDateFromCalendar("28/02/2022");
+		contractPage.inputIntoPolicyCodeTextbox("Autotest");
+		contractPage.selectPolicyDate(getToday());
+		// contractPage.selectFromDate(getToday());
+		contractPage.selectToDate(nextYear());
+		String[] units = {"Trạm Smac01","Động BÀ BÉ"};
+		contractPage.selectVehicleTreeview("Công Ty Smac Petro - Sài Gòn",units);
+		String[] vehicles = { "72S1-0002", "72S1-0001" };
+		//String[] vehicles = {};
+		contractPage.selectVehicleTreeview("Boutique Công Nợ",vehicles);
+		contractPage.inputIntoCreditLimitTextbox("50000000");
+		contractPage.inputIntoDueCycleTextbox("1");
+		contractPage.inputIntoDayPastDueTextbox("3");
+		contractPage.inputIntoCreditLimitVehicleTextbox("5000000");
+		contractPage.clickToSaveButton();
 	}
 
 	@AfterClass
 	public void afterClass() {
+		driver.quit();
 	}
 
+	public String getToday() {
+		String today = (java.time.LocalDate.now()).toString();
+		String dateStr[] = today.split("-");
+		String expDate = dateStr[2] + "/" + dateStr[1] + "/" + dateStr[0];
+		return expDate;
+	}
+
+	public String nextYear() {
+		String today = (java.time.LocalDate.now()).toString();
+		String dateStr[] = today.split("-");
+		int year = Integer.parseInt(dateStr[0]) + 1;
+		String expDate = dateStr[2] + "/" + dateStr[1] + "/" + year;
+		return expDate;
+	}
 }
