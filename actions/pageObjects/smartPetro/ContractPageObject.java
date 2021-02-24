@@ -48,11 +48,11 @@ public class ContractPageObject extends AbstractPage {
 	public void inputIntoCreditLimitTextbox(String value) {
 		waitForElementVisible(driver, ContractPageUI.CREDIT_LIMIT_TEXTBOX);
 		sendKeysToElement(driver, ContractPageUI.CREDIT_LIMIT_TEXTBOX, value);
-		sleepInSeconds(1);
 	}
 	
 	public void inputIntoDueCycleTextbox(String value) {
-		waitForElementVisible(driver, ContractPageUI.DUE_CYCLCE_TEXTBOX);
+		scrollToElement(driver, ContractPageUI.DUE_CYCLCE_TEXTBOX);
+		sleepInSeconds(3);
 		sendKeysToElement(driver, ContractPageUI.DUE_CYCLCE_TEXTBOX, value);
 		sleepInSeconds(1);
 	}

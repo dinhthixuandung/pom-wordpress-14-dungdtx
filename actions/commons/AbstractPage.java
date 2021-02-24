@@ -1,6 +1,5 @@
 package commons;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +13,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.concurrent.TimeUnit;
+
+import com.documentTemplate.documentTemplate_01_Add.Distribution;
 
 public class AbstractPage {
 
@@ -395,7 +395,24 @@ public class AbstractPage {
 			clickToElement(driver, parentXpath, parent);
 		}
 	}
+	
+//	public void addRowsIntoSubTable(WebDriver driver, String locator, Distribution[] rows) {
+//		//element = findElementByXPath(driver, locator);
+//		for(int i = 1; i <= rows.length; i++) {
+//			clickToElement(driver, locator);
+//			selectItemInCustomDropdown(driver, parenXPath, allItemXPath, expectedValueItem);
+//		}
+//	}
+	
+//	
 
+	public void addRowsIntoSubTable(WebDriver driver, String locator, Distribution[] rows) {
+		
+		for(int i = 1; i <= rows.length; i++) {
+			clickToElement(driver, locator);
+		}
+	}
+		
 	public int countElementNumber(WebDriver driver, String locator) {
 		elements = findElementsByXPath(driver, locator);
 		return elements.size();

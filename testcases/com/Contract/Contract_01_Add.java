@@ -69,6 +69,7 @@ public class Contract_01_Add {
 		//String[] vehicles = {};
 		contractPage.selectVehicleTreeview("Boutique Công Nợ",vehicles);
 		contractPage.inputIntoCreditLimitTextbox("50000000");
+		
 		contractPage.inputIntoDueCycleTextbox("1");
 		contractPage.inputIntoDayPastDueTextbox("3");
 		contractPage.inputIntoCreditLimitVehicleTextbox("5000000");

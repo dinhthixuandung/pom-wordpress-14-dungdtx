@@ -5,6 +5,7 @@ encoding//interfaces/pageUI/smartPetro/DocumentTypePageUI.java=UTF-8
 encoding//interfaces/pageUI/smartPetro/OtherGoodsPageUI.java=UTF-8
 encoding//interfaces/pageUI/smartPetro/ToolbarAndMenuPageUI.java=UTF-8
 encoding//testcases/com/Contract/Contract_01_Add.java=UTF-8
+encoding//testcases/com/documentTemplate/documentTemplate_01_Add.java=UTF-8
 encoding//testcases/com/documenttype/DocumentType_01_Add.java=UTF-8
 encoding//testcases/com/documenttype/DocumentType_02_Edit.java=UTF-8
 encoding//testcases/com/documenttype/DocumentType_03_Delete.java=UTF-8
