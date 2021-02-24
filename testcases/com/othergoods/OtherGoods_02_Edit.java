@@ -3,8 +3,6 @@ package com.othergoods;
 import org.testng.annotations.Test;
 import org.w3c.dom.DocumentType;
 
-import com.thoughtworks.selenium.webdriven.commands.Refresh;
-
 import pageObjects.smartPetro.DashboardPageObject;
 import pageObjects.smartPetro.DataTablePageObject;
 import pageObjects.smartPetro.DocumentTypePageObject;

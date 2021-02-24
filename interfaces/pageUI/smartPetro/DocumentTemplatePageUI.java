@@ -10,5 +10,5 @@ public class DocumentTemplatePageUI {
 	public static final String ALL_CHILDREN_COMPANY_DROPDOWNLIST = "//p-dropdown[@id='CompanyInDocumentTemplate']/div/div/div/ul/li/div/div";
 	
 	public static final String DISTRIBUTION_TABLE = "//tbody[@class='ui-table-tbody']";
-	public static final String ALL_UNIT = "//tbody[@class='ui-table-tbody']";
+	public static final String DYNAMIC_ROW_TEXT = "//th[contains(text(),'%s')]/ancestor::table/tbody/tr/td/sub-form-control/div/input[@id='%s']";
 }

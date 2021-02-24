@@ -30,18 +30,19 @@ public class DocumentTemplateObject extends AbstractPage{
 		sleepInSeconds(1);
 	}
 
-//	public void addNewRows(Distribution[] rows) {
-//		sleepInSeconds(3);
-//		waitForElementClickable(driver, DocumentTemplatePageUI.ADD_ROW_BUTTON);
-//		addRowsIntoSubTable(driver, DocumentTemplatePageUI.ADD_ROW_BUTTON, rows);
-//		sleepInSeconds(1);
-//	}
-//	
-//	public void selectUnit(String expectedUnit) {
-//		
-//		waitForElementVisible(driver, pageUI.smartPetro.DocumentTemplatePageUI.COMPANY_DROPDOWNLIST);
-//		selectItemInCustomDropdown(driver, pageUI.smartPetro.DocumentTemplatePageUI.COMPANY_DROPDOWNLIST, pageUI.smartPetro.DocumentTemplatePageUI.ALL_CHILDREN_COMPANY_DROPDOWNLIST, expectedUnit);
-//		sleepInSeconds(1);
-//	
-//	}
+	public void addNewRows(Distribution[] rows) {
+		sleepInSeconds(3);
+		waitForElementClickable(driver, DocumentTemplatePageUI.ADD_ROW_BUTTON);
+		addRowsIntoSubTable(driver, DocumentTemplatePageUI.ADD_ROW_BUTTON, rows);
+		inputDataIntoRows();
+		sleepInSeconds(1);
+	}
+	
+	public void selectUnit(String expectedUnit) {
+		
+		waitForElementVisible(driver, pageUI.smartPetro.DocumentTemplatePageUI.COMPANY_DROPDOWNLIST);
+		selectItemInCustomDropdown(driver, pageUI.smartPetro.DocumentTemplatePageUI.COMPANY_DROPDOWNLIST, pageUI.smartPetro.DocumentTemplatePageUI.ALL_CHILDREN_COMPANY_DROPDOWNLIST, expectedUnit);
+		sleepInSeconds(1);
+	
+	}
 }

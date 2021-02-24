@@ -404,13 +404,25 @@ public class AbstractPage {
 //		}
 //	}
 	
-//	
+
 
 	public void addRowsIntoSubTable(WebDriver driver, String locator, Distribution[] rows) {
 		
 		for(int i = 1; i <= rows.length; i++) {
 			clickToElement(driver, locator);
 		}
+	}
+
+	public void inputDataIntoRows(WebDriver driver, String unitXpath, String childenUnitXpath, String fromValueXpath, String toValueXpath, Distribution[] rows) {
+		List<WebElement> elements1 = findElementsByXPath(driver, unitXpath);
+		for (int i = 1; i <= rows.length; i++) {
+			selectItemInCustomDropdown(driver, unitXpath, childenUnitXpath, expectedValueItem);
+		}
+
+//		List<WebElement> elements2 = findElementsByXPath(driver, fromValueXpath);
+//		List<WebElement> elements3 = findElementsByXPath(driver, toValueXpath);
+		
+		
 	}
 		
 	public int countElementNumber(WebDriver driver, String locator) {
