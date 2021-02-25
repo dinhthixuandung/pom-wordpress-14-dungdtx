@@ -413,10 +413,18 @@ public class AbstractPage {
 		}
 	}
 
-	public void inputDataIntoRows(WebDriver driver, String unitXpath, String childenUnitXpath, String fromValueXpath, String toValueXpath, Distribution[] rows) {
-		List<WebElement> elements1 = findElementsByXPath(driver, unitXpath);
+	public void inputDataIntoRows(WebDriver driver, String addButtonXpath, String unitXpath, String childenUnitXpath, String fromValueXpath,
+			String toValueXpath, Distribution[] rows) {
 		for (int i = 1; i <= rows.length; i++) {
-			selectItemInCustomDropdown(driver, unitXpath, childenUnitXpath, expectedValueItem);
+			clickToElement(driver, addButtonXpath);
+
+			//List<WebElement> elements1 = findElementsByXPath(driver, unitXpath);
+			
+			for (Distribution row : rows) {
+				selectItemInCustomDropdown(driver, unitXpath, childenUnitXpath, row.unit);
+				sendKeysToElement(driver, fromValueXpath, row.fromValue);
+				sendKeysToElement(driver, fromValueXpath, row.toValue);
+			}
 		}
 
 //		List<WebElement> elements2 = findElementsByXPath(driver, fromValueXpath);

@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//interfaces/pageUI/smartPetro/DashboardPageUI.java=UTF-8
 encoding//interfaces/pageUI/smartPetro/DataTablePageUI.java=UTF-8
+encoding//interfaces/pageUI/smartPetro/DocumentTemplatePageUI.java=UTF-8
 encoding//interfaces/pageUI/smartPetro/DocumentTypePageUI.java=UTF-8
 encoding//interfaces/pageUI/smartPetro/OtherGoodsPageUI.java=UTF-8
 encoding//interfaces/pageUI/smartPetro/ToolbarAndMenuPageUI.java=UTF-8

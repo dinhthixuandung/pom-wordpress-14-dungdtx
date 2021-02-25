@@ -31,8 +31,8 @@ public class documentTemplate_01_Add {
 	// String name = "Autotest" + randomNumber();
 	String name, code;
 	private String unit;
-	private int fromdValue;
-	private int toValue;
+	private String fromdValue;
+	private String toValue;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -72,9 +72,10 @@ public class documentTemplate_01_Add {
 		
 		documentTemplatePage.clickToAddButton();
 		
-		Distribution[] rows = {new Distribution("CHXD Bà Bé",1,100),
-								new Distribution("CHXD Bà Bé",101,200),
-								new Distribution("CHXD số 1",201,300)};
+		Distribution[] rows = {new Distribution("CHXD Bà Bé","1","100"),
+								new Distribution("CHXD Bà Bé","101","200"),
+								new Distribution("CHXD số 1","201","300")};
+		documentTemplatePage.addNewRows(rows);
 		
 //		Distribution row1 = new Distribution("CHXD Bà Bé",1,100);
 //		Distribution row2 = new Distribution("CHXD Bà Bé",101,200);
@@ -96,11 +97,11 @@ public class documentTemplate_01_Add {
 	}
 
 	public class Distribution {
-		String unit;
-		int fromValue;
-		int toValue;
+		public String unit;
+		public String fromValue;
+		public String toValue;
 
-		public Distribution(String unit, int fromdValue, int toValue) {
+		public Distribution(String unit, String fromdValue, String toValue) {
 
 			this.unit = unit;
 			this.fromValue = fromdValue;
