@@ -415,17 +415,18 @@ public class AbstractPage {
 
 	public void inputDataIntoRows(WebDriver driver, String addButtonXpath, String unitXpath, String childenUnitXpath, String fromValueXpath,
 			String toValueXpath, Distribution[] rows) {
-		for (int i = 1; i <= rows.length; i++) {
-			clickToElement(driver, addButtonXpath);
+		//for (int i = 1; i <= rows.length; i++) {
+			
 
 			//List<WebElement> elements1 = findElementsByXPath(driver, unitXpath);
 			
 			for (Distribution row : rows) {
+				clickToElement(driver, addButtonXpath);
 				selectItemInCustomDropdown(driver, unitXpath, childenUnitXpath, row.unit);
 				sendKeysToElement(driver, fromValueXpath, row.fromValue);
 				sendKeysToElement(driver, fromValueXpath, row.toValue);
 			}
-		}
+		//}
 
 //		List<WebElement> elements2 = findElementsByXPath(driver, fromValueXpath);
 //		List<WebElement> elements3 = findElementsByXPath(driver, toValueXpath);

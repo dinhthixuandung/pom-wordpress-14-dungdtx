@@ -36,6 +36,7 @@ public class documentTemplate_01_Add {
 
 	@BeforeClass
 	public void beforeClass() {
+		System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
