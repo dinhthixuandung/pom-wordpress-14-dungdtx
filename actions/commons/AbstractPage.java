@@ -201,7 +201,7 @@ public class AbstractPage {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void selectItemInCustomDropdown(WebDriver driver, String parenXPath, String allItemXPath,
 			String expectedValueItem) {
 		element = findElementByXPath(driver, parenXPath);
@@ -213,6 +213,34 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXPath(allItemXPath)));
 
 		elements = findElementsByXPath(driver, allItemXPath);
+
+		for (WebElement childElement : elements) {
+			if (childElement.getText().equals(expectedValueItem)) {
+				if (childElement.isDisplayed()) {
+					childElement.click();
+				} else {
+					jsExecutor.executeScript("arguments[0].scrollIntoView(true);", childElement);
+					sleepInSeconds(1);
+					jsExecutor.executeScript("arguments[0].click();", childElement);
+				}
+				sleepInSeconds(1);
+				break;
+			}
+		}
+
+	}
+
+	public void selectItemInCustomDropdown(WebDriver driver, String parenXPath, String allItemXPath,
+			String expectedValueItem, String... values) {
+		element = findElementByXPath(driver, castToObject(parenXPath, values));
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].click();", element);
+		sleepInSeconds(1);
+
+		explicitWait = new WebDriverWait(driver, longTime);
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXPath(allItemXPath)));
+
+		elements = findElementsByXPath(driver, castToObject(allItemXPath, values));
 
 		for (WebElement childElement : elements) {
 			if (childElement.getText().equals(expectedValueItem)) {
@@ -332,14 +360,6 @@ public class AbstractPage {
 				break;
 			}
 		}
-
-//		for (WebElement day : days) {
-//
-//			if (day.getText().equalsIgnoreCase(expDay)) {
-//				day.click();
-//				break;
-//			}
-//		}
 	}
 
 	public String changeMonthToNumber(WebDriver driver, String monthXpath) {
@@ -375,7 +395,7 @@ public class AbstractPage {
 		}
 	}
 	
-	public void selectVehicleFromTreeview(WebDriver driver, String arrowXpath, String parentXpath, String childXpath, String vehicleXpath, String parent, String[] children) {
+	public void selectItemFromTreeview(WebDriver driver, String arrowXpath, String parentXpath, String childXpath, String vehicleXpath, String parent, String[] children) {
 		if (isElementDisplayed(driver, arrowXpath, parent) == true) {
 			clickToElement(driver, arrowXpath, parent);
 			elements = findElementsByXPath(driver, childXpath, parent);
@@ -396,42 +416,11 @@ public class AbstractPage {
 		}
 	}
 	
-//	public void addRowsIntoSubTable(WebDriver driver, String locator, Distribution[] rows) {
-//		//element = findElementByXPath(driver, locator);
-//		for(int i = 1; i <= rows.length; i++) {
-//			clickToElement(driver, locator);
-//			selectItemInCustomDropdown(driver, parenXPath, allItemXPath, expectedValueItem);
-//		}
-//	}
-	
-
-
 	public void addRowsIntoSubTable(WebDriver driver, String locator, Distribution[] rows) {
 		
 		for(int i = 1; i <= rows.length; i++) {
 			clickToElement(driver, locator);
 		}
-	}
-
-	public void inputDataIntoRows(WebDriver driver, String addButtonXpath, String unitXpath, String childenUnitXpath, String fromValueXpath,
-			String toValueXpath, Distribution[] rows) {
-		//for (int i = 1; i <= rows.length; i++) {
-			
-
-			//List<WebElement> elements1 = findElementsByXPath(driver, unitXpath);
-			
-			for (Distribution row : rows) {
-				clickToElement(driver, addButtonXpath);
-				selectItemInCustomDropdown(driver, unitXpath, childenUnitXpath, row.unit);
-				sendKeysToElement(driver, fromValueXpath, row.fromValue);
-				sendKeysToElement(driver, fromValueXpath, row.toValue);
-			}
-		//}
-
-//		List<WebElement> elements2 = findElementsByXPath(driver, fromValueXpath);
-//		List<WebElement> elements3 = findElementsByXPath(driver, toValueXpath);
-		
-		
 	}
 		
 	public int countElementNumber(WebDriver driver, String locator) {

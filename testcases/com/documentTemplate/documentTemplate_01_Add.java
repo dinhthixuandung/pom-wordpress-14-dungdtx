@@ -62,7 +62,7 @@ public class documentTemplate_01_Add {
 	}
 
 	@Test
-	public void inputValidate() {
+	public void TC_02_Add_Document_Template() {
 		dashboardPage.clickToMenu("HỆ THỐNG");
 
 		dashboardPage.clickToSubMenu("D.MỤC CHỨNG TỪ");
@@ -73,10 +73,21 @@ public class documentTemplate_01_Add {
 		
 		documentTemplatePage.clickToAddButton();
 		
-		Distribution[] rows = {new Distribution("CHXD Bà Bé","1","100"),
-								new Distribution("CHXD Bà Bé","101","200"),
-								new Distribution("CHXD số 1","201","300")};
-		documentTemplatePage.addNewRows(rows);
+		documentTemplatePage.inputIntoNameTextbox("Auto 123");
+		documentTemplatePage.inputIntoDocumentNoTextbox("Auto/123");
+		documentTemplatePage.inputIntoFromValueTextbox("0001");
+		documentTemplatePage.inputIntoToValueTextbox("1000");
+		
+		Distribution[] rows = {new Distribution("CHXD Bà Bé","0001","0500"),
+								new Distribution("CHXD Bà Bé","0501","0700"),
+								new Distribution("CHXD số 1","0701","1000")};
+		
+		for(int i=1; i<=rows.length;i++) {
+			documentTemplatePage.selectItemDynamicDropdownlistAtRowNumber("Đơn vị",Integer.toString(i),"CHXD số 1");
+			documentTemplatePage.inputToDynamicTextboxAtRowNumber("Từ số",Integer.toString(i),"0001");
+			documentTemplatePage.inputToDynamicTextboxAtRowNumber("Đến số",Integer.toString(i),"0500");
+		}
+		
 		
 //		Distribution row1 = new Distribution("CHXD Bà Bé",1,100);
 //		Distribution row2 = new Distribution("CHXD Bà Bé",101,200);

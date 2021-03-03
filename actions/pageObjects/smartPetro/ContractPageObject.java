@@ -83,7 +83,7 @@ public class ContractPageObject extends AbstractPage {
 
 	public void selectVehicleTreeview(String parent, String[] children) {
 		waitForElementClickable(driver, ContractPageUI.PARENT_TREEVIEW, parent);
-		selectVehicleFromTreeview(driver, ContractPageUI.ARROW_TREEVIEW, ContractPageUI.PARENT_TREEVIEW, ContractPageUI.CHILDREN_TREEVIEW, ContractPageUI.A_CHILD_CHECKBOX, parent, children);
+		selectItemFromTreeview(driver, ContractPageUI.ARROW_TREEVIEW, ContractPageUI.PARENT_TREEVIEW, ContractPageUI.CHILDREN_TREEVIEW, ContractPageUI.A_CHILD_CHECKBOX, parent, children);
 		
 	}
 	
