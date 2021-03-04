@@ -30,24 +30,7 @@ public class DocumentTemplateObject extends AbstractPage{
 		sleepInSeconds(1);
 	}
 
-//	public void addNewRows(String columnUnit, Distribution[] rows) {
-//		sleepInSeconds(3);
-//		waitForElementClickable(driver, DocumentTemplatePageUI.ADD_ROW_BUTTON);
-//
-//		
-//		inputDataIntoRows(driver, DocumentTemplatePageUI.ADD_ROW_BUTTON, columnUnit,DocumentTemplatePageUI.UNIT_DROPDOWNLIST_TABLE, 
-//				DocumentTemplatePageUI.ALL_CHILDREN_UNIT_DROPDOWNLIST_TABLE, DocumentTemplatePageUI.FROM_VALUE_TABLE,
-//				DocumentTemplatePageUI.TO_VALUE_TABLE, rows);
-//		sleepInSeconds(1);
-//	}
-	
-//	public void selectUnit(String expectedUnit) {
-//		
-//		waitForElementVisible(driver, pageUI.smartPetro.DocumentTemplatePageUI.UNIT_DROPDOWNLIST_TABLE);
-//		selectItemInCustomDropdown(driver, pageUI.smartPetro.DocumentTemplatePageUI.UNIT_DROPDOWNLIST_TABLE, pageUI.smartPetro.DocumentTemplatePageUI.ALL_CHILDREN_UNIT_DROPDOWNLIST_TABLE, expectedUnit);
-//		sleepInSeconds(1);
-//	
-//	}
+
 
 
 	public void inputIntoNameTextbox(String name) {
@@ -79,14 +62,26 @@ public class DocumentTemplateObject extends AbstractPage{
 	public void inputToDynamicTextboxAtRowNumber(String columnName, String rowNumber, String inputValue) {
 		waitForElementVisible(driver, DocumentTemplatePageUI.DYNAMIC_COLUMN_POSITION_INDEX, columnName);
 		int columnPosition = countElementNumber(driver, DocumentTemplatePageUI.DYNAMIC_COLUMN_POSITION_INDEX, columnName) + 1;
-		sendKeysToElement(driver, DocumentTemplatePageUI.DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX, rowNumber, Integer.toString(columnPosition));
+		sendKeysToElement(driver, DocumentTemplatePageUI.DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX, inputValue, rowNumber, Integer.toString(columnPosition));
 	}
 
 
-	public void selectItemDynamicDropdownlistAtRowNumber(String columnName, String rowNumber, String inputValue) {
+	public void selectItemDynamicDropdownlistAtRowNumber(String columnName, String rowNumber, String expectedValue) {
 		waitForElementVisible(driver, DocumentTemplatePageUI.DYNAMIC_COLUMN_POSITION_INDEX, columnName);
 		int columnPosition = countElementNumber(driver, DocumentTemplatePageUI.DYNAMIC_COLUMN_POSITION_INDEX, columnName) + 1;
 		selectItemInCustomDropdown(driver, DocumentTemplatePageUI.DYNAMIC_DROPDOWNLIST_BY_ROW_AND_COLUMN_INDEX, 
-				DocumentTemplatePageUI.DYNAMIC_ALL_CHILDREN_DROPDOWNLIST_BY_ROW_AND_COLUMN_INDEX,rowNumber, Integer.toString(columnPosition));
+				DocumentTemplatePageUI.DYNAMIC_ALL_CHILDREN_DROPDOWNLIST_BY_ROW_AND_COLUMN_INDEX, expectedValue, rowNumber, Integer.toString(columnPosition));
+	}
+
+	public void addNewRow() {
+		waitForElementClickable(driver, DocumentTemplatePageUI.ADD_ROW_BUTTON);
+		clickToElement(driver, DocumentTemplatePageUI.ADD_ROW_BUTTON);
+		sleepInSeconds(1);
+	}
+	
+	public void clickToSaveButton() {
+		waitForElementClickable(driver, ToolbarAndMenuPageUI.SAVE_BUTTON);
+		clickToElement(driver, ToolbarAndMenuPageUI.SAVE_BUTTON);
+		sleepInSeconds(1);
 	}
 }

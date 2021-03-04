@@ -238,7 +238,7 @@ public class AbstractPage {
 		sleepInSeconds(1);
 
 		explicitWait = new WebDriverWait(driver, longTime);
-		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXPath(allItemXPath)));
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXPath(castToObject(allItemXPath, values))));
 
 		elements = findElementsByXPath(driver, castToObject(allItemXPath, values));
 
@@ -255,7 +255,6 @@ public class AbstractPage {
 				break;
 			}
 		}
-
 	}
 
 	public void selectItemsInMultiDropdown(WebDriver driver, String parenXPath, String allItemXPath,

@@ -28,11 +28,8 @@ public class documentTemplate_01_Add {
 	String password = "123456";
 	String expectedRole = "Quản trị cấp công ty";
 	String expectedCompany = "Công Ty Smac Petro - Sài Gòn";
-	// String name = "Autotest" + randomNumber();
 	String name, code;
-	private String unit;
-	private String fromdValue;
-	private String toValue;
+
 
 	@BeforeClass
 	public void beforeClass() {
@@ -74,7 +71,7 @@ public class documentTemplate_01_Add {
 		documentTemplatePage.clickToAddButton();
 		
 		documentTemplatePage.inputIntoNameTextbox("Auto 123");
-		documentTemplatePage.inputIntoDocumentNoTextbox("Auto/123");
+		documentTemplatePage.inputIntoDocumentNoTextbox("AUT/123");
 		documentTemplatePage.inputIntoFromValueTextbox("0001");
 		documentTemplatePage.inputIntoToValueTextbox("1000");
 		
@@ -83,24 +80,14 @@ public class documentTemplate_01_Add {
 								new Distribution("CHXD số 1","0701","1000")};
 		
 		for(int i=1; i<=rows.length;i++) {
-			documentTemplatePage.selectItemDynamicDropdownlistAtRowNumber("Đơn vị",Integer.toString(i),"CHXD số 1");
-			documentTemplatePage.inputToDynamicTextboxAtRowNumber("Từ số",Integer.toString(i),"0001");
-			documentTemplatePage.inputToDynamicTextboxAtRowNumber("Đến số",Integer.toString(i),"0500");
+			documentTemplatePage.addNewRow();
+			documentTemplatePage.selectItemDynamicDropdownlistAtRowNumber("Đơn vị",Integer.toString(i), rows[i-1].unit);
+			documentTemplatePage.inputToDynamicTextboxAtRowNumber("Từ số",Integer.toString(i), rows[i-1].fromValue);
+			documentTemplatePage.inputToDynamicTextboxAtRowNumber("Đến số",Integer.toString(i), rows[i-1].toValue);
 		}
 		
-		
-//		Distribution row1 = new Distribution("CHXD Bà Bé",1,100);
-//		Distribution row2 = new Distribution("CHXD Bà Bé",101,200);
-//		Distribution row3 = new Distribution("CHXD số 1",201,300);
-//		rows.add(row1);
-//		rows.add(row2);
-//		rows.add(row3);
-		
-//		String[] expectedUnit = {;;};
-//		String[] fromValue = {;;};
-//		String toValue = {;;};
-//		documentTemplatePage.addANewRow(rows);
-//		documentTemplatePage.selectUnit("CHXD Bà Bé");
+		documentTemplatePage.clickToSaveButton();
+
 	}
 
 	@AfterClass

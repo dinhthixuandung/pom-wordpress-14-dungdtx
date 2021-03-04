@@ -8,8 +8,8 @@ public class DocumentTemplatePageUI {
 	public static final String TO_VALUE_TEXTBOX = "//input[@id='ToValue']";
 	
 	public static final String DISTRIBUTION_TABLE = "//tbody[@class='ui-table-tbody']";
-	public static final String FROM_VALUE_TABLE = "//th[contains(text(),'Đến số')]/ancestor::table/tbody/tr/td/sub-form-control/div/input[@id='ToValue']";
-	public static final String TO_VALUE_TABLE = "//th[contains(text(),'Từ số')]/ancestor::table/tbody/tr/td/sub-form-control/div/input[@id='FromValue']";
+	public static final String TO_VALUE_TABLE = "//th[contains(text(),'Đến số')]/ancestor::table/tbody/tr/td/sub-form-control/div/input[@id='ToValue']";
+	public static final String FROM_VALUE_TABLE = "//th[contains(text(),'Từ số')]/ancestor::table/tbody/tr/td/sub-form-control/div/input[@id='FromValue']";
 	public static final String DYNAMIC_DROPDOWNLIST_BY_ROW_AND_COLUMN_INDEX = "//tr[%s]/td[%s]//p-dropdown/div";
 	public static final String DYNAMIC_ALL_CHILDREN_DROPDOWNLIST_BY_ROW_AND_COLUMN_INDEX = "//tr[%s]/td[%s]//p-dropdown/div/div/div/ul/li/div//div";
 	public static final String DYNAMIC_COLUMN_POSITION_INDEX = "//th[contains(text(),'%s')]/preceding-sibling::th";
